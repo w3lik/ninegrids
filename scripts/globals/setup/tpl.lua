@@ -1,0 +1,5 @@
+TPL_ABILITY = {}
+TPL_ITEM = {}
+TPL_UNIT = {}
+TPL_ABILITY_SOUL = {}
+TPL_SACRED = {}

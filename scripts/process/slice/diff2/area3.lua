@@ -1,0 +1,7 @@
+local process = Process("slice_diff2_area3")
+process:onStart(function(this)
+    Game():sliceIndex(3)
+    Bgm():volume(80):play("lik")
+    UI_NinegridsMinimap.map:lock(3)
+    this:next("area")
+end)

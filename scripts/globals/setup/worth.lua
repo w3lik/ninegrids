@@ -1,0 +1,5 @@
+Game():worth("lumber", "木头", { "gold", 1000000 })
+Game():worth("gold", "黄金", { "silver", 100 })
+Game():worth("silver", "白银", { "copper", 100 })
+Game():worth("copper", "青铜")
+Game():worth("other", "其他")

@@ -1,0 +1,5 @@
+local process = Process("slice_diff4_area2_P1")
+process:onStart(function(this)
+    this:next("interrupt")
+    Game():bossBorn()
+end)

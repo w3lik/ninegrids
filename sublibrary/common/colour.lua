@@ -1,0 +1,1 @@
+colour.duration = colour.mintcream

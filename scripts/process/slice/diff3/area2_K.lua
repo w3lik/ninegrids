@@ -1,0 +1,6 @@
+local process = Process("slice_diff3_area2_K")
+process:onStart(function(this)
+    this:next("interrupt")
+    local gd = Game():GD()
+    Game():openDoor(gd.sliceIndex)
+end)

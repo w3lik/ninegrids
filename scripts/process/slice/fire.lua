@@ -1,0 +1,7 @@
+local process = Process("slice_fire")
+process:onStart(function(_)
+    Game():slicePosition("fire")
+    japi.CameraLock(-2555, 1640)
+    Game():npc("NPC_FireDo", TPL_UNIT.NPC_FireDo, -2555, 2200, 270)
+    Game():openDoor("fire")
+end)
