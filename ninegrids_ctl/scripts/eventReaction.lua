@@ -1,9 +1,9 @@
 function ninegridsCtl_eventReaction(ui)
-    event.registerReaction(EVENT.Prop.Change, ui:kit(), function(evtData)
+    event.reactRegister(EVENT.Prop.Change, ui:kit(), function(evtData)
         if (evtData.triggerPlayer) then
             if (evtData.key == "skin" and async.is()) then
                 ui:updateSkin()
-            elseif (evtData.key == "selection" and sync.is()) then
+            elseif (evtData.key == "selection") then
                 async.call(evtData.triggerPlayer, function()
                     ui:updatePlate()
                     ui:updateEtc()
@@ -11,11 +11,11 @@ function ninegridsCtl_eventReaction(ui)
                     ui:updateItem()
                 end)
                 if (isClass(evtData.old, UnitClass)) then
-                    event.register(evtData.old, EVENT.Unit.ItemSlotChange, ui:kit(), nil)
-                    event.register(evtData.old, EVENT.Unit.AbilitySlotChange, ui:kit(), nil)
+                    event.syncRegister(evtData.old, EVENT.Unit.ItemSlotChange, ui:kit(), nil)
+                    event.syncRegister(evtData.old, EVENT.Unit.AbilitySlotChange, ui:kit(), nil)
                 end
                 if (isClass(evtData.new, UnitClass)) then
-                    event.register(evtData.new, EVENT.Unit.ItemSlotChange, ui:kit(), function(ed)
+                    event.syncRegister(evtData.new, EVENT.Unit.ItemSlotChange, ui:kit(), function(ed)
                         async.call(ed.triggerUnit:owner(), function()
                             ui:updateItem()
                         end)
@@ -36,7 +36,7 @@ function ninegridsCtl_eventReaction(ui)
                             Game():save("sacredUse")
                         end
                     end)
-                    event.register(evtData.new, EVENT.Unit.AbilitySlotChange, ui:kit(), function(ed)
+                    event.syncRegister(evtData.new, EVENT.Unit.AbilitySlotChange, ui:kit(), function(ed)
                         async.call(ed.triggerUnit:owner(), function()
                             ui:updateAbility()
                         end)
@@ -59,7 +59,7 @@ function ninegridsCtl_eventReaction(ui)
                     end)
                 end
             end
-        elseif (evtData.triggerUnit and sync.is()) then
+        elseif (evtData.triggerUnit) then
             if (evtData.triggerUnit == PlayerLocal():selection()) then
                 async.call(PlayerLocal(), function()
                     ui:updatePlate()
@@ -69,7 +69,7 @@ function ninegridsCtl_eventReaction(ui)
         end
     end)
     PlayersForeach(function(enumPlayer, _)
-        event.register(enumPlayer, EVENT.Player.WarehouseSlotChange, ui:kit(), function()
+        event.syncRegister(enumPlayer, EVENT.Player.WarehouseSlotChange, ui:kit(), function()
             ui:updateWarehouse()
         end)
     end)

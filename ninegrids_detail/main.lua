@@ -68,9 +68,9 @@ ui:onSetup(function(this)
         :onEvent(EVENT.Frame.Leave, function(evtData) evtData.triggerFrame:alpha(160) end)
         :onEvent(EVENT.Frame.Enter, function(evtData) evtData.triggerFrame:alpha(255) end)
         :onEvent(EVENT.Frame.LeftClick, function() this:display() end)
-    event.registerReaction(EVENT.Prop.Change, kit, function(evtData)
+    event.reactRegister(EVENT.Prop.Change, kit, function(evtData)
         if (evtData.triggerPlayer) then
-            if (evtData.key == "selection" and sync.is()) then
+            if (evtData.key == "selection") then
                 if (isClass(evtData.new, UnitClass)) then
                     async.call(evtData.triggerPlayer, function()
                         stage.detailBtn:show(true)

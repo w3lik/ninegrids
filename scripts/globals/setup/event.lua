@@ -16,16 +16,16 @@ event.confPropChange({
 local function _z(u, offset)
     return u:h() + 130 + offset
 end
-event.registerReaction(EVENT.Unit.Kill, function(evtData)
+event.reactRegister(EVENT.Unit.Kill, function(evtData)
     local owner = evtData.targetUnit:owner()
     if (owner:selection() == evtData.targetUnit) then
         owner:prop("selection", evtData.triggerUnit)
     end
 end)
-event.registerReaction(EVENT.Unit.Crit, function(evtData)
+event.reactRegister(EVENT.Unit.Crit, function(evtData)
     evtData.targetUnit:attach("lik_crit", "origin", 0.5)
 end)
-event.registerReaction(EVENT.Unit.CritAbility, function(evtData)
+event.reactRegister(EVENT.Unit.CritAbility, function(evtData)
     local tu = evtData.targetUnit
     tu:attach("lik_crit_ability", "origin", 0.5)
     local model
@@ -45,10 +45,10 @@ event.registerReaction(EVENT.Unit.CritAbility, function(evtData)
         duration = 0.8,
     })
 end)
-event.registerReaction(EVENT.Unit.Avoid, function(evtData)
+event.reactRegister(EVENT.Unit.Avoid, function(evtData)
     evtData.triggerUnit:attach("lik_ttg_avoid", "overhead", 0.3)
 end)
-event.registerReaction(EVENT.Unit.ImmuneInvincible, function(evtData)
+event.reactRegister(EVENT.Unit.ImmuneInvincible, function(evtData)
     evtData.triggerUnit:attach("DivineShieldTarget", "origin", 1)
     ttg.model({
         model = "lik_ttg_immune_invincible",
@@ -60,7 +60,7 @@ event.registerReaction(EVENT.Unit.ImmuneInvincible, function(evtData)
         duration = 1,
     })
 end)
-event.registerReaction(EVENT.Unit.ImmuneDefend, function(evtData)
+event.reactRegister(EVENT.Unit.ImmuneDefend, function(evtData)
     ttg.model({
         model = "lik_ttg_immune_damage",
         size = 0.7,
@@ -71,7 +71,7 @@ event.registerReaction(EVENT.Unit.ImmuneDefend, function(evtData)
         duration = 1,
     })
 end)
-event.registerReaction(EVENT.Unit.ImmuneReduction, function(evtData)
+event.reactRegister(EVENT.Unit.ImmuneReduction, function(evtData)
     ttg.model({
         model = "lik_ttg_immune_damage",
         size = 0.7,
@@ -82,7 +82,7 @@ event.registerReaction(EVENT.Unit.ImmuneReduction, function(evtData)
         duration = 1,
     })
 end)
-event.registerReaction(EVENT.Unit.ImmuneEnchant, function(evtData)
+event.reactRegister(EVENT.Unit.ImmuneEnchant, function(evtData)
     ttg.model({
         model = "lik_ttg_immune_enchant",
         size = 0.7,
@@ -93,28 +93,28 @@ event.registerReaction(EVENT.Unit.ImmuneEnchant, function(evtData)
         duration = 1,
     })
 end)
-event.registerReaction(EVENT.Unit.HPSuckAttack, function(evtData)
+event.reactRegister(EVENT.Unit.HPSuckAttack, function(evtData)
     evtData.triggerUnit:attach("HealTarget2", "origin", 0.5)
 end)
-event.registerReaction(EVENT.Unit.HPSuckAbility, function(evtData)
+event.reactRegister(EVENT.Unit.HPSuckAbility, function(evtData)
     evtData.triggerUnit:attach("HealTarget2", "origin", 0.5)
 end)
-event.registerReaction(EVENT.Unit.MPSuckAttack, function(evtData)
+event.reactRegister(EVENT.Unit.MPSuckAttack, function(evtData)
     evtData.triggerUnit:attach("AImaTarget", "origin", 0.5)
 end)
-event.registerReaction(EVENT.Unit.MPSuckAbility, function(evtData)
+event.reactRegister(EVENT.Unit.MPSuckAbility, function(evtData)
     evtData.triggerUnit:attach("AImaTarget", "origin", 0.5)
 end)
-event.registerReaction(EVENT.Unit.Be.Stun, function(evtData)
+event.reactRegister(EVENT.Unit.Be.Stun, function(evtData)
     evtData.triggerUnit:attach("ThunderclapTarget", "overhead", evtData.duration)
 end)
-event.registerReaction(EVENT.Unit.Be.Split, function(evtData)
+event.reactRegister(EVENT.Unit.Be.Split, function(evtData)
     evtData.triggerUnit:effect("SpellBreakerAttack")
 end)
-event.registerReaction(EVENT.Unit.Be.SplitSpread, function(evtData)
+event.reactRegister(EVENT.Unit.Be.SplitSpread, function(evtData)
     evtData.triggerUnit:effect("CleaveDamageTarget")
 end)
-event.registerReaction(EVENT.Unit.Be.Shield, function(evtData)
+event.reactRegister(EVENT.Unit.Be.Shield, function(evtData)
     if (evtData.value >= 1) then
         local u = evtData.triggerUnit
         ttg.word({
@@ -130,7 +130,7 @@ event.registerReaction(EVENT.Unit.Be.Shield, function(evtData)
         })
     end
 end)
-event.registerReaction(EVENT.Unit.Hurt, function(evtData)
+event.reactRegister(EVENT.Unit.Hurt, function(evtData)
     local str = math.format(evtData.damage, 0)
     local height = -50
     if (evtData.crit == true) then
@@ -156,7 +156,7 @@ event.registerReaction(EVENT.Unit.Hurt, function(evtData)
         duration = 0.7,
     })
 end)
-event.registerReaction(EVENT.Unit.Enchant, function(evtData)
+event.reactRegister(EVENT.Unit.Enchant, function(evtData)
     local m = {
         [DAMAGE_TYPE.fire.value] = "lik_ttg_e_fire",
         [DAMAGE_TYPE.water.value] = "lik_ttg_e_water",
@@ -184,7 +184,7 @@ event.registerReaction(EVENT.Unit.Enchant, function(evtData)
         })
     end
 end)
-event.registerReaction(EVENT.Unit.Be.Stun, function(evtData)
+event.reactRegister(EVENT.Unit.Be.Stun, function(evtData)
     local p = evtData.triggerUnit:owner()
     if (p:isComputer() == false) then
         async.call(p, function()

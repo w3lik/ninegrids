@@ -19,7 +19,7 @@ TPL_ABILITY_SOUL[8] = AbilityTpl()
     end)
     :onUnitEvent(EVENT.Unit.Attack,
     function(attackData)
-        if (false == event.has(attackData.triggerUnit, EVENT.Unit.Attack, "threeAxeAtk")) then
+        if (false == event.syncHas(attackData.triggerUnit, EVENT.Unit.Attack, "threeAxeAtk")) then
             local lv = attackData.triggerAbility:level()
             local atk = 4 + lv * 0.5
             attackData.triggerUnit:prop("threeAxeAtk", math.ceil(attackData.damage * atk * 0.01))

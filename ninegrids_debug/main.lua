@@ -137,10 +137,10 @@ if (DEBUGGING) then
         local stage = self:stage()
         local txts = {}
         if (stage.infoIndex == 1) then
-            local count = { all = 0, max = J.handleMax() }
+            local count = { all = 0, max = J.HandleMax() }
             for i = 1, count.max do
                 local h = 0x100000 + i
-                local info = J.handleDef(h)
+                local info = J.HandleDef(h)
                 if (info and info.type) then
                     if (not table.includes(stage.types, info.type)) then
                         table.insert(stage.types, info.type)

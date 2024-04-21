@@ -302,7 +302,7 @@ UI_NinegridsMinimap:onSetup(function(this)
             stage.bg:texture("bg\\" .. PlayerLocal():skin())
         end
     end)
-    event.registerReaction(EVENT.Prop.Change, "ninegrids_minimap", function(evtData)
+    event.reactRegister(EVENT.Prop.Change, "ninegrids_minimap", function(evtData)
         if (evtData.triggerPlayer) then
             if (evtData.key == "skin") then
                 async.call(evtData.triggerPlayer, function()

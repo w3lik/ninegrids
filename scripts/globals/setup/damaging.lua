@@ -16,8 +16,8 @@ damageFlow:set("breakArmor", function(data)
         for _, b in ipairs(data.breakArmor) do
             if (b ~= nil) then
                 ignore[b.value] = true
-                event.trigger(data.sourceUnit, EVENT.Unit.BreakArmor, { targetUnit = data.targetUnit, breakType = b })
-                event.trigger(data.targetUnit, EVENT.Unit.Be.BreakArmor, { breakUnit = data.sourceUnit, breakType = b })
+                event.syncTrigger(data.sourceUnit, EVENT.Unit.BreakArmor, { targetUnit = data.targetUnit, breakType = b })
+                event.syncTrigger(data.targetUnit, EVENT.Unit.Be.BreakArmor, { breakUnit = data.sourceUnit, breakType = b })
             end
         end
     end
@@ -30,7 +30,7 @@ damageFlow:set("breakArmor", function(data)
     if (true == data.targetUnit:isInvulnerable()) then
         if (ignore.invincible == false) then
             data.damage = 0
-            event.trigger(data.targetUnit, EVENT.Unit.ImmuneInvincible, { sourceUnit = data.sourceUnit })
+            event.syncTrigger(data.targetUnit, EVENT.Unit.ImmuneInvincible, { sourceUnit = data.sourceUnit })
             return
         end
     end
@@ -57,8 +57,8 @@ damageFlow:set("shield", function(data)
         end
         if (sd > 0) then
             data.targetUnit:shieldCur("-=" .. sd)
-            event.trigger(data.targetUnit, EVENT.Unit.Be.Shield, { sourceUnit = data.sourceUnit, value = sd })
-            event.trigger(data.sourceUnit, EVENT.Unit.Shield, { targetUnit = data.targetUnit, value = sd })
+            event.syncTrigger(data.targetUnit, EVENT.Unit.Be.Shield, { sourceUnit = data.sourceUnit, value = sd })
+            event.syncTrigger(data.sourceUnit, EVENT.Unit.Shield, { targetUnit = data.targetUnit, value = sd })
         end
     end
 end)
@@ -78,8 +78,8 @@ damageFlow:set("crit", function(data)
                 data.damage = data.damage * (1 + crit * 0.01)
                 data.avoid = 0
                 data.crit = true
-                event.trigger(data.sourceUnit, EVENT.Unit.Crit, { targetUnit = data.targetUnit })
-                event.trigger(data.targetUnit, EVENT.Unit.Be.Crit, { sourceUnit = data.sourceUnit })
+                event.syncTrigger(data.sourceUnit, EVENT.Unit.Crit, { targetUnit = data.targetUnit })
+                event.syncTrigger(data.targetUnit, EVENT.Unit.Be.Crit, { sourceUnit = data.sourceUnit })
             end
         end
     end
@@ -89,8 +89,8 @@ damageFlow:set("avoid", function(data)
     if (approve) then
         if (data.avoid > math.rand(1, 100)) then
             data.damage = 0
-            event.trigger(data.targetUnit, EVENT.Unit.Avoid, { sourceUnit = data.sourceUnit })
-            event.trigger(data.sourceUnit, EVENT.Unit.Be.Avoid, { targetUnit = data.targetUnit })
+            event.syncTrigger(data.targetUnit, EVENT.Unit.Avoid, { sourceUnit = data.sourceUnit })
+            event.syncTrigger(data.sourceUnit, EVENT.Unit.Be.Avoid, { targetUnit = data.targetUnit })
             return
         end
     end
@@ -176,7 +176,7 @@ damageFlow:set("defend", function(data)
         data.damage = data.damage - data.defend
         if (data.damage < 1) then
             data.damage = 0
-            event.trigger(data.targetUnit, EVENT.Unit.ImmuneDefend, { sourceUnit = data.sourceUnit })
+            event.syncTrigger(data.targetUnit, EVENT.Unit.ImmuneDefend, { sourceUnit = data.sourceUnit })
             return
         end
     end
@@ -187,7 +187,7 @@ damageFlow:set("hurtReduction", function(data)
         data.damage = data.damage * (1 - hurtReduction * 0.01)
         if (data.damage < 1) then
             data.damage = 0
-            event.trigger(data.targetUnit, EVENT.Unit.ImmuneReduction, { sourceUnit = data.sourceUnit })
+            event.syncTrigger(data.targetUnit, EVENT.Unit.ImmuneReduction, { sourceUnit = data.sourceUnit })
             return
         end
     end
@@ -199,8 +199,8 @@ damageFlow:set("hpSuckAttack", function(data)
         local val = data.damage * percent * 0.01
         if (percent > 0 and val > 0) then
             data.sourceUnit:hpBack(val)
-            event.trigger(data.sourceUnit, EVENT.Unit.HPSuckAttack, { targetUnit = data.targetUnit, value = val, percent = percent })
-            event.trigger(data.targetUnit, EVENT.Unit.Be.HPSuckAttack, { sourceUnit = data.sourceUnit, value = val, percent = percent })
+            event.syncTrigger(data.sourceUnit, EVENT.Unit.HPSuckAttack, { targetUnit = data.targetUnit, value = val, percent = percent })
+            event.syncTrigger(data.targetUnit, EVENT.Unit.Be.HPSuckAttack, { sourceUnit = data.sourceUnit, value = val, percent = percent })
         end
     end
 end)
@@ -211,8 +211,8 @@ damageFlow:set("hpSuckAbility", function(data)
         local val = data.damage * percent * 0.01
         if (percent > 0 and val > 0) then
             data.sourceUnit:hpBack(val)
-            event.trigger(data.sourceUnit, EVENT.Unit.HPSuckAbility, { targetUnit = data.targetUnit, value = val, percent = percent })
-            event.trigger(data.targetUnit, EVENT.Unit.Be.HPSuckAbility, { sourceUnit = data.sourceUnit, value = val, percent = percent })
+            event.syncTrigger(data.sourceUnit, EVENT.Unit.HPSuckAbility, { targetUnit = data.targetUnit, value = val, percent = percent })
+            event.syncTrigger(data.targetUnit, EVENT.Unit.Be.HPSuckAbility, { sourceUnit = data.sourceUnit, value = val, percent = percent })
         end
     end
 end)
@@ -226,8 +226,8 @@ damageFlow:set("mpSuckAttack", function(data)
             if (val > 1) then
                 data.targetUnit:mpBack(-val)
                 data.sourceUnit:mpBack(val)
-                event.trigger(data.sourceUnit, EVENT.Unit.MPSuckAttack, { targetUnit = data.targetUnit, value = val, percent = percent })
-                event.trigger(data.targetUnit, EVENT.Unit.Be.MPSuckAttack, { sourceUnit = data.sourceUnit, value = val, percent = percent })
+                event.syncTrigger(data.sourceUnit, EVENT.Unit.MPSuckAttack, { targetUnit = data.targetUnit, value = val, percent = percent })
+                event.syncTrigger(data.targetUnit, EVENT.Unit.Be.MPSuckAttack, { sourceUnit = data.sourceUnit, value = val, percent = percent })
             end
         end
     end
@@ -242,8 +242,8 @@ damageFlow:set("mpSuckAbility", function(data)
             if (val > 1) then
                 data.targetUnit:mpBack(-val)
                 data.sourceUnit:mpBack(val)
-                event.trigger(data.sourceUnit, EVENT.Unit.MPSuckAbility, { targetUnit = data.targetUnit, value = val, percent = percent })
-                event.trigger(data.targetUnit, EVENT.Unit.Be.MPSuckAbility, { sourceUnit = data.sourceUnit, value = val, percent = percent })
+                event.syncTrigger(data.sourceUnit, EVENT.Unit.MPSuckAbility, { targetUnit = data.targetUnit, value = val, percent = percent })
+                event.syncTrigger(data.targetUnit, EVENT.Unit.Be.MPSuckAbility, { sourceUnit = data.sourceUnit, value = val, percent = percent })
             end
         end
     end
@@ -265,7 +265,7 @@ damageFlow:set("enchant", function(data)
         mystery = math.max(0, mystery)
         percent = percent * mystery
     end
-    event.trigger(data.targetUnit, EVENT.Unit.Enchant, { sourceUnit = data.sourceUnit, enchantType = data.damageType, percent = percent })
+    event.syncTrigger(data.targetUnit, EVENT.Unit.Enchant, { sourceUnit = data.sourceUnit, enchantType = data.damageType, percent = percent })
     if (data.damageType ~= DAMAGE_TYPE.common) then
         if (data.damageSrc == DAMAGE_SRC.attack or data.damageSrc == DAMAGE_SRC.ability or data.damageSrc == DAMAGE_SRC.item) then
             enchant.append(data.targetUnit, data.damageType, data.damageTypeLevel, data.sourceUnit)
@@ -294,7 +294,7 @@ damageFlow:set("enchant", function(data)
     end
     if (data.targetUnit:isEnchantImmune(data.damageType.value)) then
         data.damage = 0
-        event.trigger(data.targetUnit, EVENT.Unit.ImmuneEnchant, { sourceUnit = data.sourceUnit, enchantType = data.damageType })
+        event.syncTrigger(data.targetUnit, EVENT.Unit.ImmuneEnchant, { sourceUnit = data.sourceUnit, enchantType = data.damageType })
     else
         data.damage = data.damage * (100 + percent) * 0.01
     end

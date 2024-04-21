@@ -34,7 +34,7 @@ TPL_SACRED[19] = ItemTpl()
         :onEvent(EVENT.Ability.Effective,
         function(effectiveData)
             local u = effectiveData.triggerUnit
-            if (event.has(u, EVENT.Unit.Hurt, "刍咒骨符连命")) then
+            if (event.syncHas(u, EVENT.Unit.Hurt, "刍咒骨符连命")) then
                 async.call(u:owner(), function()
                     UI_NinegridsInfo:info("alert", 2, "已处在连命状态")
                 end)

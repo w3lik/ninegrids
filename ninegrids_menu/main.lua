@@ -105,7 +105,7 @@ ui:onSetup(function(this)
             stage.updateName()
         end)
     end
-    event.registerReaction(EVENT.Prop.Change, "lik_menu", function(evtData)
+    event.reactRegister(EVENT.Prop.Change, "lik_menu", function(evtData)
         if (evtData.triggerGame) then
             async.call(PlayerLocal(), function()
                 if (i18n.isEnable() and evtData.key == "i18nLang") then
@@ -127,7 +127,7 @@ ui:onSetup(function(this)
         end
     end)
     PlayersForeach(function(enumPlayer, _)
-        event.register(enumPlayer, EVENT.Player.WorthChange, ui:kit(), function()
+        event.syncRegister(enumPlayer, EVENT.Player.WorthChange, ui:kit(), function()
             local p = PlayerLocal()
             async.call(p, function()
                 local r = p:worth()

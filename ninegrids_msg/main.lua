@@ -14,7 +14,7 @@ ui:onSetup(function(this)
         :relation(FRAME_ALIGN_BOTTOM, FrameGameUI, FRAME_ALIGN_BOTTOM, 0.008, 0.15)
         :textAlign(TEXT_ALIGN_CENTER)
         :fontSize(13)
-    event.registerReaction(EVENT.Prop.Change, "ninegrids_msg", function(evtData)
+    event.reactRegister(EVENT.Prop.Change, "ninegrids_msg", function(evtData)
         if (evtData.triggerPlayer) then
             if ((i18n.isEnable() and evtData.key == "i18nLang") or evtData.key == "alert") then
                 async.call(evtData.triggerPlayer, function()
