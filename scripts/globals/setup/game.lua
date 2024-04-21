@@ -6,7 +6,7 @@ Game():balloonKeyboard('H')
 Game():balloonVoicePop(nil, 85)
 Game():balloonVoiceFlip("war3_MouseClick2", 75)
 Game():onEvent(EVENT.Game.Start, "info", function()
-    async.setInterval(1, function()
+    time.setInterval(1, function()
         local timeOfDay = time.ofDay()
         local tit = ""
         if (timeOfDay >= 0.00 and timeOfDay < 6.00) then

@@ -56,7 +56,7 @@ TPL_SACRED[30] = ItemTpl()
                 end
                 curTimer:period(1)
                 Effect("eff/ElectricSpark", x, y, 20, 0.5):size(0.6)
-                Effect("eff/ElectricMouseGlow", x, y, 30, 3):size(w / 512)
+                Effect("war3mapImports/ElectricMouseGlow.mdl", x, y, 30, 3):size(w / 512)
             end)
         end)
         :onEvent(EVENT.Ability.Casting,
@@ -76,7 +76,7 @@ TPL_SACRED[30] = ItemTpl()
                 local _shot = function(target)
                     local opt = {
                         sourceUnit = u,
-                        modelAlias = "missile/ElectricMouseMissileR",
+                        modelAlias = "war3mapImports/ElectricMouseMissileR.mdl",
                         scale = 0.16,
                         height = 400,
                         weaponHeight = 120,
@@ -88,7 +88,7 @@ TPL_SACRED[30] = ItemTpl()
                     if (isClass(target, UnitClass)) then
                         opt.targetUnit = target
                         opt.onEnd = function(options)
-                            target:attach("eff/ElectricMouseTargetW", "origin", 1)
+                            target:attach("war3mapImports/ElectricMouseTargetW.mdl", "origin", 1)
                             ability.damage({
                                 sourceUnit = options.sourceUnit,
                                 targetUnit = options.targetUnit,

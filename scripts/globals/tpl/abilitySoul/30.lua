@@ -194,7 +194,7 @@ TPL_ABILITY_SOUL[30] = AbilityTpl()
         })
         if (#g > 0) then
             for _, eu in ipairs(g) do
-                eu:attach("eff/ElectricMouseStand", "chest", 0.5)
+                eu:attach("war3mapImports/ElectricMouseStand.mdl", "chest", 0.5)
                 ability.damage({
                     sourceUnit = u,
                     targetUnit = eu,

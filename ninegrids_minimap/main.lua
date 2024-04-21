@@ -38,7 +38,7 @@ UI_NinegridsMinimap:onSetup(function(this)
         :block(true)
         :relation(FRAME_ALIGN_CENTER, FrameGameUI, FRAME_ALIGN_CENTER, 0, 0.04)
         :size(mmSize * 3 + 0.7, mmSize * 3 + 0.08)
-        :texture(assets.uikit("ninegrids_essence", "bg/display", "tga"))
+        :texture(AUIKit("ninegrids_essence", "bg/display", "tga"))
         :alpha(255)
         :show(false)
     local mm = {
