@@ -121,8 +121,8 @@ if (DEBUGGING) then
             avg = table.average(stage.costAvg)
             stage.costAvg = { avg }
         end
-        local fps = japi.FPS()
-        if (fps < 55) then
+        local fps = japi.GetFPS() / 100
+        if (fps < 50) then
             stage.low = stage.low + 1
         end
         return {
@@ -130,7 +130,7 @@ if (DEBUGGING) then
             colour.hex(colour.skyblue, "平均 : " .. math.format(avg, 3) .. ' MB'),
             colour.hex(colour.littlepink, "最大 : " .. math.format(stage.costMax, 3) .. ' MB'),
             colour.hex(colour.gold, "当前 : " .. math.format(cost, 3) .. ' MB'),
-            colour.hex(colour.green, "Low : " .. math.format(stage.low / 60, 1) .. '秒'),
+            colour.hex(colour.green, "Low : " .. stage.low),
         }
     end
     function ui:debug()
