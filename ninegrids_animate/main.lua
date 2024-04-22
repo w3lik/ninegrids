@@ -23,7 +23,8 @@ UI_NinegridsAnimate:onSetup(function(this)
             :show(false)
             :motion(motion)
             :duration(v.dur)
-            :onStop(function(evt) evt:gradient({ duration = 0.1, alpha = -1 }, function(callFrame) callFrame:show(false) end) end)
+            :onStop(function(evt) evt:gradient({ duration = 0.1, alpha = -1 }, function(callFrame) callFrame:show(false) end)
+        end)
     end
     stage.item = FrameBackdrop(kit .. "->item", FrameGameUI):texture("i_item"):adaptive(true):show(false)
     stage.see = FrameBackdrop(kit .. "->see", FrameGameUI):texture("i_see"):adaptive(true):show(false)
@@ -38,7 +39,7 @@ function UI_NinegridsAnimate:item(relation, x, y)
     local t = stage.item:prop("aniTimer")
     destroy(t)
     local i = 0
-    t = async.setInterval(0.21, function(curTimer)
+    t = async.setInterval(13, function(curTimer)
         i = i + 1
         if (i >= 9) then
             destroy(curTimer)
@@ -62,7 +63,7 @@ function UI_NinegridsAnimate:see(relation, x, y)
     local t = stage.see:prop("aniTimer")
     destroy(t)
     local i = 0
-    t = async.setInterval(0.21, function(curTimer)
+    t = async.setInterval(13, function(curTimer)
         i = i + 1
         if (i >= 9) then
             destroy(curTimer)

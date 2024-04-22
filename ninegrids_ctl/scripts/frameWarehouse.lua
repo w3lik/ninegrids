@@ -105,6 +105,55 @@ function ninegridsCtl_frameWarehouse(kit, stage)
                 evtData.triggerFrame:childHighlight():show(false)
                 FrameTooltips():show(false)
             end)
+            :onEvent(EVENT.Frame.RightClick,
+            function(evtData)
+                if (cursor.isQuoting()) then
+                    return
+                end
+                local slot = evtData.triggerPlayer:warehouseSlot()
+                if (nil == slot) then
+                    return
+                end
+                local storage = slot:storage()
+                if (nil == storage) then
+                    return
+                end
+                local ob = storage[i]
+                local triggerFrame = evtData.triggerFrame
+                japi.FrameSetAlpha(triggerFrame:handle(), 0)
+                audio(Vcm("war3_MouseClick1"))
+                cursor.quote("follow", {
+                    object = ob,
+                    frame = triggerFrame,
+                    over = function()
+                        japi.FrameSetAlpha(triggerFrame:handle(), triggerFrame:alpha())
+                    end,
+                    ---@param evt evtOnMouseRightClickData
+                    rightClick = function(evt)
+                        local p = evt.triggerPlayer
+                        local tarIdx = -1
+                        local tarType, tarObj
+                        local sto = p:warehouseSlot():storage()
+                        for w = 1, stage.warehouseMAX do
+                            local it = sto[w]
+                            local btn = stage.warehouseButton[w]
+                            if (btn:isInner(evt.rx, evt.ry, false)) then
+                                tarObj, tarType, tarIdx = it, "warehouse", w
+                                break
+                            end
+                        end
+                        if (-1 ~= tarIdx and false == table.equal(ob, tarObj)) then
+                            if (tarType == "warehouse") then
+                                sync.send("slotSync", { "warehouse_push", ob:id(), tarIdx })
+                            end
+                            audio(Vcm("war3_MouseClick1"))
+                        else
+                            cursor.quoteOver()
+                        end
+                    end,
+                })
+            end)
+        
         stage.warehouseCharges[i] = FrameButton(kitWh .. "->charges->" .. i, stage.warehouseButton[i]:childBorder())
             :relation(FRAME_ALIGN_RIGHT_BOTTOM, stage.warehouseButton[i], FRAME_ALIGN_RIGHT_BOTTOM, -0.0011, 0.00146)
             :texture(TEAM_COLOR_BLP_BLACK)

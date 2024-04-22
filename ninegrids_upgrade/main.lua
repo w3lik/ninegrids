@@ -56,7 +56,7 @@ UI_NinegridsUpgrade:onSetup(function(this)
         local command = syncData.transferData[1]
         local diff = math.round(syncData.transferData[2])
         Game():upgrade(command, diff)
-        async.setTimeout(0.1, function()
+        time.setTimeout(0.1, function()
             async.call(p, function()
                 this:updated()
                 UI_NinegridsInfo:updated()

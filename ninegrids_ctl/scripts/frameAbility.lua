@@ -83,69 +83,59 @@ function ninegridsCtl_frameAbility(kit, stage)
                     cursor.quote(ab:targetType(), { ability = ab })
                 end
             end)
+            :onEvent(EVENT.Frame.RightClick,
+            function(evtData)
+                if (cursor.isQuoting()) then
+                    return
+                end
+                local selection = evtData.triggerPlayer:selection()
+                if (false == isClass(selection, UnitClass)) then
+                    return
+                end
+                local slot = selection:abilitySlot()
+                if (nil == slot) then
+                    return
+                end
+                local storage = slot:storage()
+                if (nil == storage) then
+                    return
+                end
+                local ob = storage[i]
+                local triggerFrame = evtData.triggerFrame
+                japi.FrameSetAlpha(triggerFrame:handle(), 0)
+                audio(Vcm("war3_MouseClick1"))
+                cursor.quote("follow", {
+                    object = ob,
+                    frame = triggerFrame,
+                    over = function()
+                        japi.FrameSetAlpha(triggerFrame:handle(), triggerFrame:alpha())
+                    end,
+                    ---@param evt evtOnMouseRightClickData
+                    rightClick = function(evt)
+                        local sel = evt.triggerPlayer:selection()
+                        if (isClass(sel, UnitClass) and sel:owner() == evt.triggerPlayer) then
+                            local tarIdx = -1
+                            local tarObj
+                            local sto = sel:abilitySlot():storage()
+                            for j = 1, 5 do
+                                local ab = sto[j]
+                                local btn = stage.abilityBtn[j]
+                                if (btn:isInner(evt.rx, evt.ry, false)) then
+                                    tarIdx = j
+                                    tarObj = ab
+                                    break
+                                end
+                            end
+                            if (-1 ~= tarIdx and false == table.equal(ob, tarObj)) then
+                                sync.send("slotSync", { "ability_push", ob:id(), tarIdx })
+                                audio(Vcm("war3_MouseClick1"))
+                            else
+                                cursor.quoteOver()
+                            end
+                        end
+                    end,
+                })
+            end)
             :show(false)
     end
-    sync.receive(kitAb .. "_SYNC", function(syncData)
-        local syncPlayer = syncData.syncPlayer
-        local command = syncData.transferData[1]
-        if (command == "push") then
-            syncPlayer:prop("righted", 1)
-            local abId = syncData.transferData[2]
-            local i = tonumber(syncData.transferData[3])
-            local fi = tonumber(syncData.transferData[4])
-            local ab = i2o(abId)
-            if (isClass(ab, AbilityClass)) then
-                syncPlayer:selection():abilitySlot():insert(ab, i)
-            end
-            japi.FrameSetAlpha(stage.abilityBtn[fi]:handle(), stage.abilityBtn[fi]:alpha())
-        end
-    end)
-    mouse.onRightClick(kitAb .. "_mouse_right", function(evtData)
-        local triggerPlayer = evtData.triggerPlayer
-        local followObject = Cursor():followObj()
-        local ing = cursor.isFollowing() or cursor.isDragging()
-        if (ing == true and isClass(followObject, AbilityClass) == false) then
-            return
-        end
-        local selection = triggerPlayer:selection()
-        if (isClass(selection, 'Unit')) then
-            local abilitySlot = selection:abilitySlot()
-            if (selection:isAlive() and selection:owner() == triggerPlayer and abilitySlot ~= nil) then
-                local j = 0
-                for i = 1, 5 do
-                    local ab = abilitySlot:storage()[i]
-                    local bed = stage.abilityBedding[i]
-                    if (bed:isInner()) then
-                        if (ing == true) then
-                            if (table.equal(followObject, ab) == false) then
-                                Cursor():followStop(function(stopData)
-                                    local fab = stopData.followObj
-                                    if (isClass(fab, AbilityClass)) then
-                                        local fi = stopData.i
-                                        local fo = stopData.followObj
-                                        sync.send(kitAb .. "_SYNC", { "push", fo:id(), i, fi })
-                                        audio(Vcm("war3_MouseClick1"))
-                                    end
-                                end)
-                            else
-                                Cursor():followStop()
-                            end
-                        elseif (isClass(ab, AbilityClass)) then
-                            FrameTooltips():show(false, 0)
-                            audio(Vcm("war3_MouseClick1"))
-                            japi.FrameSetAlpha(stage.abilityBtn[i]:handle(), 0)
-                            Cursor():followCall(ab, { frame = stage.abilityBtn[i], i = i }, function(stopData)
-                                japi.FrameSetAlpha(stopData.frame:handle(), stopData.frame:alpha())
-                            end)
-                        end
-                        break
-                    end
-                    j = i + 1
-                end
-                if (j > 5 and ing == true) then
-                    Cursor():followStop()
-                end
-            end
-        end
-    end)
 end

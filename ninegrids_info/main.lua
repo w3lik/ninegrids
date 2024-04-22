@@ -235,7 +235,7 @@ function UI_NinegridsInfo:updated()
                 for j = 1, 4, 1 do
                     stage["avatarBtnA" .. j]:alpha(150)
                 end
-                self:prop("soulCTimer", time.setTimeout(2, function()
+                self:prop("soulCTimer", async.setTimeout(100, function()
                     self:clear("soulCTimer")
                     for j = 1, 4, 1 do
                         stage["avatarBtnA" .. j]:alpha(255)
@@ -286,42 +286,6 @@ function UI_NinegridsInfo:updated()
                 :show(true)
         end)
          :show(true)
-    if (stage.avatarBtnB3:show() == false) then
-        local btnW = 0.015
-        local has = false
-        if (has) then
-            stage.avatarBtnB3:size(btnW * 2.3, btnW * 2.3)
-            local ti = 0
-            time.setInterval(0.2, function(curTimer)
-                ti = ti + 1
-                if (ti > 50) then
-                    destroy(curTimer)
-                    stage.avatarBtnB3:alpha(255):size(btnW, btnW):gradient({ size = 100, duration = 0.5 })
-                    return
-                end
-                local alpha = stage.avatarBtnB3:alpha()
-                if (alpha == 255) then
-                    stage.avatarBtnB3:alpha(130)
-                else
-                    stage.avatarBtnB3:alpha(255)
-                end
-            end)
-        end
-        stage.avatarBtnB3
-             :texture(AIcon("item/Shield60"))
-             :onEvent(EVENT.Frame.LeftClick, function() UI_NinegridsEffect:toggle() end)
-             :onEvent(EVENT.Frame.Leave, function() FrameTooltips():show(false) end)
-             :onEvent(EVENT.Frame.Enter,
-            function()
-                FrameTooltips()
-                    :textAlign(TEXT_ALIGN_LEFT)
-                    :fontSize(9)
-                    :relation(FRAME_ALIGN_LEFT_TOP, stage.avatarBtnB3, FRAME_ALIGN_LEFT_BOTTOM, 0, -0.02)
-                    :content(tooltipsAvatarB3())
-                    :show(true)
-            end)
-             :show(true)
-    end
 end
 function UI_NinegridsInfo:countdown(t, tit)
     async.must()
@@ -330,7 +294,7 @@ function UI_NinegridsInfo:countdown(t, tit)
         return
     end
     local stage = self:stage()
-    if (isClass(stage.countdownTimer, TimerClass)) then
+    if (isClass(stage.countdownTimer, TimerAsyncClass)) then
         destroy(stage.countdownTimer)
         stage.countdown:show(true)
     else
@@ -339,7 +303,7 @@ function UI_NinegridsInfo:countdown(t, tit)
         end)
     end
     stage.countdownTxt:text(tit .. t:remain() .. " 秒")
-    stage.countdownTimer = time.setInterval(0.3, function(curTimer)
+    stage.countdownTimer = async.setInterval(18, function(curTimer)
         local re = t:remain()
         if (isDestroy(t) or re <= 0) then
             destroy(curTimer)
@@ -392,7 +356,7 @@ function UI_NinegridsInfo:dead(dur)
     stage.dead:gradient({ duration = 0.5, alpha = 1 }, function(callFrame)
         callFrame:show(true)
     end)
-    time.setTimeout(dur, function()
+    async.setTimeout(dur * 60, function()
         self:darkMarker(false)
         stage.dead:gradient({ duration = 0.3, alpha = -1 }, function(callFrame)
             callFrame:show(false)
@@ -406,7 +370,7 @@ function UI_NinegridsInfo:boss()
     stage.boss:gradient({ duration = 0.3, alpha = 1 }, function(callFrame)
         callFrame:show(true)
     end)
-    time.setTimeout(1, function()
+    async.setTimeout(60, function()
         self:darkMarker(false)
         stage.boss:gradient({ duration = 0.3, alpha = -1 }, function(callFrame)
             callFrame:show(false)
@@ -421,7 +385,7 @@ function UI_NinegridsInfo:bossMe()
     stage.me:gradient({ duration = 0.3, alpha = 1 }, function(callFrame)
         callFrame:show(true)
     end)
-    time.setTimeout(3, function()
+    async.setTimeout(180, function()
         self:darkMarker(false)
         stage.me:gradient({ duration = 0.3, alpha = -1 }, function(callFrame)
             callFrame:show(false)

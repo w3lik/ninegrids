@@ -81,115 +81,65 @@ function ninegridsCtl_frameItem(kit, stage)
                     end
                 end
             end)
+            :onEvent(EVENT.Frame.RightClick,
+            function(evtData)
+                if (cursor.isQuoting()) then
+                    return
+                end
+                local selection = evtData.triggerPlayer:selection()
+                if (false == isClass(selection, UnitClass)) then
+                    return
+                end
+                local slot = selection:itemSlot()
+                if (nil == slot) then
+                    return
+                end
+                local storage = slot:storage()
+                if (nil == storage) then
+                    return
+                end
+                local ob = storage[i]
+                local triggerFrame = evtData.triggerFrame
+                japi.FrameSetAlpha(triggerFrame:handle(), 0)
+                audio(Vcm("war3_MouseClick1"))
+                cursor.quote("follow", {
+                    object = ob,
+                    frame = triggerFrame,
+                    over = function()
+                        japi.FrameSetAlpha(triggerFrame:handle(), triggerFrame:alpha())
+                    end,
+                    ---@param evt evtOnMouseRightClickData
+                    rightClick = function(evt)
+                        local p = evt.triggerPlayer
+                        local sel = p:selection()
+                        if (isClass(sel, UnitClass) and sel:owner() == p) then
+                            local tarIdx = -1
+                            local tarType, tarObj
+                            local sto = sel:itemSlot():storage()
+                            for j = 1, stage.itemMAX do
+                                local it = sto[j]
+                                local btn = stage.itemButton[j]
+                                if (btn:isInner(evt.rx, evt.ry, false)) then
+                                    tarObj, tarType, tarIdx = it, "item", j
+                                    break
+                                end
+                            end
+                            if (-1 ~= tarIdx and false == table.equal(ob, tarObj)) then
+                                if (tarType == "item") then
+                                    sync.send("slotSync", { "item_push", ob:id(), tarIdx, triggerFrame:id() })
+                                end
+                                audio(Vcm("war3_MouseClick1"))
+                            else
+                                cursor.quoteOver()
+                            end
+                        end
+                    end,
+                })
+            end)
+        
         stage.itemCharges[i] = FrameButton(kit .. '->charges->' .. i, stage.itemButton[i])
             :relation(FRAME_ALIGN_RIGHT_BOTTOM, stage.itemButton[i], FRAME_ALIGN_RIGHT_BOTTOM, -0.0013, 0.0018)
             :texture(TEAM_COLOR_BLP_BLACK)
             :fontSize(7)
     end
-    local onFollowChange = function(stopData, i)
-        local fi = stopData.i
-        local fo = stopData.followObj
-        if (fi <= stage.itemMAX and i <= stage.itemMAX) then
-            sync.send(kitIt .. "_SYNC", { "item_push", fo:id(), i, fi })
-            audio(Vcm("war3_MouseClick1"))
-        elseif (fi > stage.itemMAX and i > stage.itemMAX) then
-            sync.send(kitIt .. "_SYNC", { "warehouse_push", fo:id(), i - stage.itemMAX, fi - stage.itemMAX })
-            audio(Vcm("war3_MouseClick1"))
-        else
-            japi.FrameSetAlpha(stopData.frame:handle(), stopData.frame:alpha())
-            audio(Vcm("war3_MouseClick2"))
-        end
-    end
-    sync.receive(kitIt .. "_SYNC", function(syncData)
-        local syncPlayer = syncData.syncPlayer
-        local command = syncData.transferData[1]
-        if (command == "item_push") then
-            local itId = syncData.transferData[2]
-            local i = tonumber(syncData.transferData[3])
-            local fi = tonumber(syncData.transferData[4])
-            local it = i2o(itId)
-            if (isClass(it, ItemClass)) then
-                syncPlayer:selection():itemSlot():insert(it, i)
-            end
-            japi.FrameSetAlpha(stage.itemButton[fi]:handle(), stage.itemButton[fi]:alpha())
-        elseif (command == "warehouse_push") then
-            local itId = syncData.transferData[2]
-            local i = tonumber(syncData.transferData[3])
-            local fi = tonumber(syncData.transferData[4])
-            local it = i2o(itId)
-            if (isClass(it, ItemClass)) then
-                syncPlayer:warehouseSlot():insert(it, i)
-            end
-            japi.FrameSetAlpha(stage.warehouseButton[fi]:handle(), stage.warehouseButton[fi]:alpha())
-        end
-    end)
-    mouse.onRightClick(kitIt .. "_mouse_right", function(evtData)
-        local triggerPlayer = evtData.triggerPlayer
-        local followObject = Cursor():followObj()
-        local ing = cursor.isFollowing() or cursor.isDragging()
-        if (ing == true and isClass(followObject, ItemClass) == false) then
-            return
-        end
-        local selection = triggerPlayer:selection()
-        local iCheck = false
-        local wCheck = false
-        if (isClass(selection, 'Unit')) then
-            if (selection:isAlive() and selection:owner() == triggerPlayer) then
-                local itemSlot = selection:itemSlot()
-                if (itemSlot ~= nil) then
-                    for i = 1, stage.itemMAX do
-                        local it = itemSlot:storage()[i]
-                        local btn = stage.itemButton[i]
-                        if (true == btn:parent():show() and btn:isInner(nil, nil, false)) then
-                            if (ing == true) then
-                                if (table.equal(followObject, it) == false) then
-                                    Cursor():followStop(function(stopData)
-                                        onFollowChange(stopData, i)
-                                    end)
-                                else
-                                    Cursor():followStop()
-                                end
-                            elseif (isClass(it, ItemClass)) then
-                                FrameTooltips():show(false, 0)
-                                audio(Vcm("war3_MouseClick1"))
-                                japi.FrameSetAlpha(btn:handle(), 0)
-                                Cursor():followCall(it, { frame = btn, i = i }, function(stopData)
-                                    japi.FrameSetAlpha(stopData.frame:handle(), stopData.frame:alpha())
-                                end)
-                            end
-                            iCheck = true
-                            break
-                        end
-                    end
-                end
-            end
-        end
-        for i = 1, stage.warehouseMAX do
-            local it = triggerPlayer:warehouseSlot():storage()[i]
-            local btn = stage.warehouseButton[i]
-            if (true == btn:parent():show() and btn:isInner(nil, nil, false)) then
-                if (ing == true) then
-                    if (table.equal(followObject, it) == false) then
-                        Cursor():followStop(function(stopData)
-                            onFollowChange(stopData, stage.itemMAX + i)
-                        end)
-                    else
-                        Cursor():followStop()
-                    end
-                elseif (isClass(it, ItemClass)) then
-                    FrameTooltips():show(false, 0)
-                    audio(Vcm("war3_MouseClick1"))
-                    japi.FrameSetAlpha(btn:handle(), 0)
-                    Cursor():followCall(it, { frame = btn, i = stage.itemMAX + i }, function(stopData)
-                        japi.FrameSetAlpha(stopData.frame:handle(), stopData.frame:alpha())
-                    end)
-                end
-                wCheck = true
-                break
-            end
-        end
-        if (iCheck == false and wCheck == false and ing == true) then
-            Cursor():followStop()
-        end
-    end)
 end

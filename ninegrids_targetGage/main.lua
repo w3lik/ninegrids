@@ -126,7 +126,7 @@ function ui:maskRemain(uniqueKey, ratio, relation)
     self:prop("maskRemain", maskRemain)
     stage.mask:show(true)
     stage.mask:relation(FRAME_ALIGN_LEFT, relation, FRAME_ALIGN_RIGHT, 0, 0):size(stage.length * maskRemain, stage.height)
-    local t = async.setInterval(0.03, function(cutTimer)
+    local t = async.setInterval(2, function(cutTimer)
         local pr = self:prop("maskRemain") or -1
         pr = pr - (stage.length / 30)
         self:prop("maskRemain", pr)
@@ -150,7 +150,7 @@ function ui:updated(target)
         return
     end
     local hideTimer = self:prop("hideTimer")
-    if (isClass(hideTimer, TimerClass)) then
+    if (isClass(hideTimer, TimerAsyncClass)) then
         self:clear("hideTimer", true)
     end
     local call = function()
@@ -187,7 +187,7 @@ function ui:updated(target)
     end
     call()
     local ti = 0
-    self:prop("hideTimer", async.setInterval(0.3, function(curTimer)
+    self:prop("hideTimer", async.setInterval(18, function(curTimer)
         ti = ti + 1
         if (ti > 16 or isClass(target, UnitClass) == false or target:isDead()) then
             destroy(curTimer)
