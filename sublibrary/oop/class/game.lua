@@ -813,7 +813,6 @@ function class:soulRune(index)
 end
 function class:achievementDo(index)
     local gd = self:GD()
-    must(1 == gd.achievement[index])
     local rewardDo = TPL_ACHIEVEMENT[index]:prop("rewardDo")
     if (type(rewardDo) == "function") then
         rewardDo()
@@ -838,7 +837,6 @@ end
 function class:meSoulC(index)
     local gd = self:GD()
     local p = gd.me:owner()
-    must(1 == gd.soul[index])
     local isBan = false
     if (gd.me:isAbilityChantCasting() or gd.me:isAbilityKeepCasting()) then
         isBan = true
@@ -961,7 +959,6 @@ end
 function class:meSoulF(index, fn)
     local gd = self:GD()
     local p = gd.me:owner()
-    must(1 == gd.soul[index])
     local fi = "meSoul" .. fn
     local cur = 0
     local swap = gd[fi]
@@ -1242,7 +1239,6 @@ end
 function class:sacredPush(index, slotIndex, isInit)
     local gd = self:GD()
     local p = gd.me:owner()
-    must(1 == gd.sacredGet[index])
     local tpl = TPL_SACRED[index]
     if (isClass(tpl, ItemTplClass)) then
         local slot = gd.me:itemSlot()
@@ -1292,7 +1288,6 @@ function class:sacredForgeOdds(index, fgLv)
 end
 function class:sacredForgeWorth(index, fgLv)
     local gd = self:GD()
-    must(1 == gd.sacredGet[index])
     local wor = { copper = (2500 + (index - 1) * 1300) }
     return self:worthCale(wor, "*", (1 + (fgLv - 1) * 0.8) * gd.sacredDiscount)
 end
@@ -1307,7 +1302,6 @@ end
 function class:sacredForge(index)
     local gd = self:GD()
     local p = gd.me:owner()
-    must(1 == gd.sacredGet[index])
     local tpl = TPL_SACRED[index]
     if (isClass(tpl, ItemTplClass)) then
         local fgLv = gd.sacredForge[index]
@@ -1346,7 +1340,6 @@ end
 function class:sacredForge10(index)
     local gd = self:GD()
     local p = gd.me:owner()
-    must(1 == gd.sacredGet[index])
     local tpl = TPL_SACRED[index]
     if (isClass(tpl, ItemTplClass)) then
         local fgLv = gd.sacredForge[index]

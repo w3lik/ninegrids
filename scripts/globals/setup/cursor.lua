@@ -146,7 +146,7 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
         end
         local p = PlayerLocal()
         local selection = p:selection()
-        if (selection ~= nil or selection:owner() == p) then
+        if (selection ~= nil and selection:owner() == p) then
             J.EnableSelect(false, false)
             async.setTimeout(1, function()
                 J.SelectUnit(selection:handle(), true)
