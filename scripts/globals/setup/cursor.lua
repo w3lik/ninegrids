@@ -99,9 +99,7 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
             enemy = ":cursor\\aim\\red.tga",
             neutral = ":cursor\\aim\\gold.tga",
         },
-        circle = {
-            
-        },
+        circle = nil,
         square = {
             alpha = 150,
             enable = ":cursor\\square\\white.tga",
@@ -117,7 +115,7 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
     ---@param ab Ability
     ---@return boolean
     local abilityCheck = function(ab)
-        if (isClass(ab, AbilityClass)) then
+        if (false == isClass(ab, AbilityClass)) then
             return false
         end
         local p = PlayerLocal()
@@ -238,12 +236,12 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
         start = function()
             local data = cursor.currentData()
             local ab = data.ability
-            if (true == abilityCheck(ab)) then
-                sound.vcm("war3_MouseClick1")
-                sync.send("G_GAME_SYNC", { "ability_effective", ab:id() })
-                cursor.quoteOver()
+            if (false == abilityCheck(ab)) then
+                return false
             end
-            return false
+            audio(Vcm("war3_MouseClick1"))
+            sync.send("G_GAME_SYNC", { "ability_effective", ab:id() })
+            cursor.quoteOver()
         end,
     })
     
@@ -251,16 +249,17 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
         start = function()
             local data = cursor.currentData()
             local ab = data.ability
-            if (true == abilityStart(ab)) then
-                sound.vcm("war3_MouseClick1")
-                -- 双击对己释放
-                local u = ab:bindUnit()
-                if (ab:isCastTarget(u)) then
-                    if (_unitU == u) then
-                        _unitU = nil
-                        sync.send("G_GAME_SYNC", { "ability_effective_u", ab:id(), u:id() })
-                        return false
-                    end
+            if (false == abilityStart(ab)) then
+                return false
+            end
+            audio(Vcm("war3_MouseClick1"))
+            -- 双击对己释放
+            local u = ab:bindUnit()
+            if (ab:isCastTarget(u)) then
+                if (_unitU == u) then
+                    _unitU = nil
+                    sync.send("G_GAME_SYNC", { "ability_effective_u", ab:id(), u:id() })
+                    return false
                 end
             end
             _unit1 = nil
@@ -357,9 +356,10 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
         start = function()
             local data = cursor.currentData()
             local ab = data.ability
-            if (true == abilityStart(ab)) then
-                sound.vcm("war3_MouseClick1")
+            if (false == abilityStart(ab)) then
+                return false
             end
+            audio(Vcm("war3_MouseClick1"))
         end,
         over = function()
             csPointer:alpha(0)
@@ -423,12 +423,13 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
         start = function()
             local data = cursor.currentData()
             local ab = data.ability
-            if (true == abilityStart(ab)) then
-                sound.vcm("war3_MouseClick1")
+            if (false == abilityStart(ab)) then
+                return false
             end
+            audio(Vcm("war3_MouseClick1"))
+            csPointer:alpha(0)
             _int1 = -1
             _unit1 = nil
-            csPointer:alpha(0)
         end,
         over = function()
             csArea:show(false)
@@ -463,7 +464,7 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
             local castRadius = ab:castRadius()
             local circleParams = csTexture.circle
             if (nil == circleParams) then
-                local skin = game.skin
+                local skin = PlayerLocal():skin()
                 if (RACE_SELECTION_SPELL_AREA_OF_EFFECT[skin]) then
                     circleParams = {
                         alpha = 255,
@@ -573,12 +574,13 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
         start = function()
             local data = cursor.currentData()
             local ab = data.ability
-            if (true == abilityStart(ab)) then
-                sound.vcm("war3_MouseClick1")
+            if (false == abilityStart(ab)) then
+                return false
             end
+            audio(Vcm("war3_MouseClick1"))
+            csPointer:alpha(0)
             _int1 = -1
             _unit1 = nil
-            csPointer:alpha(0)
         end,
         over = function()
             csArea:show(false)

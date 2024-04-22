@@ -1082,7 +1082,7 @@ function class:firePush(index, slotIndex, isInit)
     local p = gd.me:owner()
     index = math.round(index / 100)
     local tpl = TPL_ABILITY_FIRE[index]
-    if (tpl ~= nil and tpl:condition()) then
+    if (tpl ~= nil) then
         if (isClass(tpl, AbilityTplClass)) then
             local slot = gd.me:abilitySlot()
             local idx = slot:index(tpl)
@@ -1129,7 +1129,7 @@ end
 function class:abilityLevelUpWorth(index, abLv)
     local gd = self:GD()
     local tpl = TPL_ABILITY_SOUL[index]
-    must(isClass(tpl, AbilityTplClass) and tpl:condition())
+    must(isClass(tpl, AbilityTplClass))
     local wor = { copper = (4500 + (index - 1) * 2500) }
     return self:worthCale(wor, "*", (1 + (abLv - 1) * 2) * gd.abilityDiscount)
 end
@@ -1138,7 +1138,6 @@ function class:abilityLvUp(index)
     local p = gd.me:owner()
     local tpl = TPL_ABILITY_SOUL[index]
     if (isClass(tpl, AbilityTplClass)) then
-        must(tpl:condition())
         local abLv = gd.abilityLevel[index]
         if (abLv >= gd.abilityMaxLv) then
             async.call(p, function()
@@ -1164,7 +1163,6 @@ function class:abilityRemove(index)
     local p = gd.me:owner()
     local tpl = TPL_ABILITY_SOUL[index]
     if (isClass(tpl, AbilityTplClass)) then
-        must(tpl:condition())
         local slot = gd.me:abilitySlot()
         local idx = slot:index(tpl)
         if (idx ~= -1) then
@@ -1182,7 +1180,6 @@ function class:abilityPush(index, slotIndex, isInit)
     local p = gd.me:owner()
     local tpl = TPL_ABILITY_SOUL[index]
     if (isClass(tpl, AbilityTplClass)) then
-        must(tpl:condition())
         local slot = gd.me:abilitySlot()
         local idx = slot:index(tpl)
         local empty = 0
