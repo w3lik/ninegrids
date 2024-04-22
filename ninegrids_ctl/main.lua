@@ -321,7 +321,7 @@ function ui:updateAbility()
                                     tmpData.btn[i].border = "Framework\\ui\\nil.tga"
                                 else
                                     tmpData.btn[i].border = "btn\\border-white"
-                                    if (tmpData.selection:owner() == whichPlayer and storage[i] == Cursor():ability()) then
+                                    if (tmpData.selection:owner() == whichPlayer and storage[i] == cursor.currentData().ability) then
                                         tmpData.btn[i].border = "btn\\border-gold"
                                     end
                                 end
@@ -402,7 +402,7 @@ function ui:updateItem()
                                     tmpData.btn[i].text = reason
                                 end
                             end
-                            if (ab == Cursor():ability()) then
+                            if (ab == cursor.currentData().ability) then
                                 tmpData.btn[i].border = "btn\\border-gold"
                             end
                         end

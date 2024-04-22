@@ -2,7 +2,7 @@ local class = Class(PlayerClass)
 function class:pickMissionItem(tpl)
     local ws = self:warehouseSlot()
     if (ws:empty() == 0) then
-        self:alert(colour.hex(colour.red, "材料背包已满"), true)
+        alerter.message(self, true, "材料背包已满")
         return false
     end
     ws:insert(tpl)

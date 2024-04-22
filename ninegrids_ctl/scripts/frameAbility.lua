@@ -24,7 +24,7 @@ function ninegridsCtl_frameAbility(kit, stage)
             :mask('Framework\\ui\\mask.tga')
             :onEvent(EVENT.Frame.Enter,
             function(evtData)
-                if (Cursor():isFollowing() or Cursor():dragging()) then
+                if (cursor.isFollowing() or cursor.isDragging()) then
                     return
                 end
                 local selection = evtData.triggerPlayer:selection()
@@ -78,7 +78,10 @@ function ninegridsCtl_frameAbility(kit, stage)
                 if (storage == nil) then
                     return
                 end
-                Cursor():abilityQuote(storage[i])
+                local ab = storage[i]
+                if (isClass(ab, AbilityClass)) then
+                    cursor.quote(ab:targetType(), { ability = ab })
+                end
             end)
             :show(false)
     end
@@ -100,7 +103,7 @@ function ninegridsCtl_frameAbility(kit, stage)
     mouse.onRightClick(kitAb .. "_mouse_right", function(evtData)
         local triggerPlayer = evtData.triggerPlayer
         local followObject = Cursor():followObj()
-        local ing = Cursor():isFollowing() or Cursor():dragging()
+        local ing = cursor.isFollowing() or cursor.isDragging()
         if (ing == true and isClass(followObject, AbilityClass) == false) then
             return
         end

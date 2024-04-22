@@ -12,9 +12,10 @@ if (false == DEBUGGING) then
             end
             mouse.onLeftClick("negativeHangUp", clickResume)
             mouse.onRightClick("negativeHangUp", clickResume)
-            async.setInterval(30, function(curTimer)
-                local period = curTimer:period()
-                if (period > 180) then
+            local i = 0
+            async.setInterval(3000, function(curTimer)
+                i = i + 1
+                if (i > 3) then
                     destroy(curTimer)
                     return
                 end
@@ -26,7 +27,6 @@ if (false == DEBUGGING) then
                 end
                 cx, cy = cx2, cy2
                 click = false
-                curTimer:period("+=10")
             end)
         end)
     end)

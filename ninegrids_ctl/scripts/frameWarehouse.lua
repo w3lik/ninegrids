@@ -72,7 +72,7 @@ function ninegridsCtl_frameWarehouse(kit, stage)
             :show(false)
             :onEvent(EVENT.Frame.Enter,
             function(evtData)
-                if (Cursor():isFollowing() or Cursor():dragging()) then
+                if (cursor.isFollowing() or cursor.isDragging()) then
                     return
                 end
                 evtData.triggerFrame:childHighlight():show(true)

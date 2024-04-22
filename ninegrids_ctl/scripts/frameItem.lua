@@ -25,7 +25,7 @@ function ninegridsCtl_frameItem(kit, stage)
             :show(false)
             :onEvent(EVENT.Frame.Enter,
             function(evtData)
-                if (Cursor():isFollowing() or Cursor():dragging()) then
+                if (cursor.isFollowing() or cursor.isDragging()) then
                     return
                 end
                 local selection = evtData.triggerPlayer:selection()
@@ -59,7 +59,7 @@ function ninegridsCtl_frameItem(kit, stage)
             end)
             :onEvent(EVENT.Frame.LeftClick,
             function(evtData)
-                if (Cursor():isFollowing() or Cursor():dragging()) then
+                if (cursor.isFollowing() or cursor.isDragging()) then
                     return
                 end
                 local selection = evtData.triggerPlayer:selection()
@@ -74,7 +74,12 @@ function ninegridsCtl_frameItem(kit, stage)
                 if (storage == nil) then
                     return
                 end
-                Cursor():itemQuote(storage[i])
+                if (storage[i]) then
+                    local ab = storage[i]:ability()
+                    if (isClass(ab, AbilityClass)) then
+                        cursor.quote(ab:targetType(), { ability = ab })
+                    end
+                end
             end)
         stage.itemCharges[i] = FrameButton(kit .. '->charges->' .. i, stage.itemButton[i])
             :relation(FRAME_ALIGN_RIGHT_BOTTOM, stage.itemButton[i], FRAME_ALIGN_RIGHT_BOTTOM, -0.0013, 0.0018)
@@ -121,7 +126,7 @@ function ninegridsCtl_frameItem(kit, stage)
     mouse.onRightClick(kitIt .. "_mouse_right", function(evtData)
         local triggerPlayer = evtData.triggerPlayer
         local followObject = Cursor():followObj()
-        local ing = Cursor():isFollowing() or Cursor():dragging()
+        local ing = cursor.isFollowing() or cursor.isDragging()
         if (ing == true and isClass(followObject, ItemClass) == false) then
             return
         end

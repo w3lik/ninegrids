@@ -48,7 +48,7 @@ TPL_ABILITY_BOSS["刍泠(噩法师)"] = {
                         local v = 0.03 * eu:hpCur()
                         eu:attach("DrainCaster", "origin", 1)
                         eu:hpCur("-=" .. v)
-                        u:hpBack( v)
+                        u:hpBack(v)
                     end
                 end
             end)

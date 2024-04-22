@@ -124,8 +124,7 @@ TPL_WEATHER = {
                     local ti = 0
                     local t = math.rand(3, 6)
                     local e = Effect("aura/CycloneShield", x, y, japi.Z(x, y) + 40, -1)
-                    audio(V3d("wind001"), nil, function(this) this:xyz(x, y, 0) end)
-                    async.setInterval(0.3, function(curTimer)
+                    time.setInterval(0.3, function(curTimer)
                         local gus = Group():catch(UnitClass, {
                             circle = { x = x, y = y, radius = 110 },
                             filter = function(enumUnit) return enumUnit:isAlive() and enumUnit:owner():isNeutral() == false end
@@ -173,6 +172,7 @@ TPL_WEATHER = {
                             end
                         end
                     end)
+                    audio(V3d("wind001"), nil, function(this) this:xyz(x, y, 0) end)
                 end
             end
         end),
@@ -266,7 +266,7 @@ TPL_WEATHER = {
                         local y = eu:y() + math.rand(-230, 230)
                         local t = math.rand(1, 3)
                         local e = Effect("aura/MassDispel", x, y, japi.Z(x, y) + 20, -1)
-                        async.setTimeout(t, function()
+                        time.setTimeout(t, function()
                             destroy(e)
                             local gus = Group():catch(UnitClass, {
                                 circle = { x = x, y = y, radius = 100 },
@@ -373,7 +373,7 @@ TPL_WEATHER = {
                     local ti = 0
                     local t = math.rand(7, 11)
                     local e = Effect("aura/FreezingField", x, y, japi.Z(x, y) + 20, -1)
-                    async.setInterval(1.5, function(curTimer)
+                    time.setInterval(1.5, function(curTimer)
                         local gus = Group():catch(UnitClass, {
                             circle = { x = x, y = y, radius = 375 },
                             filter = function(enumUnit) return enumUnit:isAlive() and enumUnit:owner():isNeutral() == false end

@@ -189,7 +189,7 @@ TPL_ABILITY_BOSS["霜泠(巫妖)"] = {
                 end
                 for _ = 1, 5 do
                     local tx, ty = vector2.polar(x, y, math.rand(0, radius), math.rand(0, 359))
-                    alerter.circle( tx, ty, 200)
+                    alerter.circle(tx, ty, 200)
                     effector("eff/Blizzard2", tx, ty, 0, 0.9)
                     time.setTimeout(1.0, function()
                         local g = Group():catch(UnitClass, {

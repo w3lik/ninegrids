@@ -102,7 +102,7 @@ UI_NinegridsInfo:onSetup(function(this)
         "ability/InscriptionVantusRuneNightmare",
         "ability/InscriptionVantusRuneOdyn",
     }
-    stage.avatar:texture(assets.icon(aic[Game():GD().diff]))
+    stage.avatar:texture(AIcon(aic[Game():GD().diff]))
     stage.avatarBorder = FrameBackdrop(kit .. '->avatarBorder', stage.avatar)
         :relation(FRAME_ALIGN_CENTER, stage.avatar, FRAME_ALIGN_CENTER, 0, 0)
         :size(0.055, 0.055)
@@ -260,7 +260,7 @@ function UI_NinegridsInfo:updated()
             end)
          :show(true)
     end
-    stage.avatarBtnB1:prop("texture", assets.icon("other/PlusYellow"))
+    stage.avatarBtnB1:prop("texture", AIcon("other/PlusYellow"))
          :onEvent(EVENT.Frame.LeftClick, function() UI_NinegridsUpgrade:upgrade() end)
          :onEvent(EVENT.Frame.Leave, function() FrameTooltips():show(false) end)
          :onEvent(EVENT.Frame.Enter,
@@ -308,7 +308,7 @@ function UI_NinegridsInfo:updated()
             end)
         end
         stage.avatarBtnB3
-             :texture(assets.icon("item/Shield60"))
+             :texture(AIcon("item/Shield60"))
              :onEvent(EVENT.Frame.LeftClick, function() UI_NinegridsEffect:toggle() end)
              :onEvent(EVENT.Frame.Leave, function() FrameTooltips():show(false) end)
              :onEvent(EVENT.Frame.Enter,
@@ -458,7 +458,7 @@ function UI_NinegridsInfo:info(typ, duration, msg)
         self:clear("msgTimer", true)
         t = nil
     end
-    t = time.setTimeout(duration, function()
+    t = async.setTimeout(duration * 60, function()
         stage.msg:gradient({ duration = 0.1, alpha = -1 }, function(callFrame)
             callFrame:show(false)
         end)

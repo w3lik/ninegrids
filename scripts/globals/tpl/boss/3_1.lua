@@ -122,7 +122,7 @@ TPL_ABILITY_BOSS["龙泠(青龙拳师)"] = {
                             return ab:isCastTarget(enumUnit)
                         end,
                     })
-                    effector("war3mapImports/ElectricMouseTargetW.mdl", tx, ty, 100 + japi.Z(tx, ty), 1)
+                    effector(":war3mapImports/ElectricMouseTargetW.mdl", tx, ty, 100 + japi.Z(tx, ty), 1)
                     if (#g > 0) then
                         for _, eu in ipairs(g) do
                             eu:attach("BoltImpact", "origin", 1)

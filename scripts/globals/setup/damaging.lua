@@ -147,7 +147,7 @@ damageFlow:set("hurtRebound", function(data)
                             local x1, y1, z1 = data.targetUnit:x(), data.targetUnit:y(), data.targetUnit:h()
                             local x2, y2, z2 = data.sourceUnit:x(), data.sourceUnit:y(), data.sourceUnit:h()
                             lightning(am:lightningType(), x1, y1, z1, x2, y2, z2, lDur)
-                            async.setTimeout(lDelay, function()
+                            time.setTimeout(lDelay, function()
                                 damagedArrived()
                             end)
                         elseif (mode == "missile") then

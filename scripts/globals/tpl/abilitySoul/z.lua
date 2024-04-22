@@ -16,8 +16,7 @@ for i = 1, #TPL_ABILITY_SOUL, 1 do
         v:castTargetFilter(CAST_TARGET_FILTER.enemyAbility)
     end
     if (i >= 9 and i <= 40) then
-        v:condition(function() return Game():soul(i) == true
-        end)
+        v:condition(function() return Game():soul(i) == true end)
          :conditionTips("打败：" .. TPL_SOUL[i]:name())
     end
     if (i > c) then

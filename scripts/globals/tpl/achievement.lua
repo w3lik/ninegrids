@@ -345,7 +345,7 @@ TPL_ACHIEVEMENT = {
                 if (dmg > 1) then
                     local di = 0
                     local dur = 5
-                    async.setInterval(1, function(curTimer)
+                    time.setInterval(1, function(curTimer)
                         di = di + 1
                         if (di > dur) then
                             destroy(curTimer)

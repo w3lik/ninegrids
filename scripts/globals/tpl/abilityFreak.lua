@@ -55,7 +55,7 @@ TPL_ABILITY_FREAK = {
             local u = effectiveData.triggerUnit
             local dur = 6
             local ti = 0
-            async.setInterval(0.25, function(curTimer)
+            time.setInterval(0.25, function(curTimer)
                 ti = ti + 1
                 if (ti >= 16) then
                     destroy(curTimer)
