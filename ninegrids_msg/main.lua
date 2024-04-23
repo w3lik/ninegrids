@@ -7,6 +7,10 @@ ui:onSetup(function(this)
             :absolut(FRAME_ALIGN_LEFT_BOTTOM, 0.1, 0.25)
             :size(0, 0.36)
     end
+    
+    stage.worldMessage = Frame(kit .. "->worldMessage", japi.FrameGetWorldFrameMessage(), nil)
+        :absolut(FRAME_ALIGN_LEFT_BOTTOM, 0.31, 0.17)
+    
     stage.chat = Frame(kit .. "->chat", japi.FrameGetChatMessage(), nil)
         :absolut(FRAME_ALIGN_BOTTOM, 0.03, 0.20)
         :size(0.22, 0.16)
