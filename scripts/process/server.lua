@@ -137,7 +137,7 @@ process:onStart(function(this)
             v = math.max(1, v)
             gd.abilityLevel[i] = v
         end
-        vl = string.split(sev:load("SCGT", string.repeater('0', #TPL_SACRED)), 1)
+        vl = string.split(sev:load("SCGT", string.repeater('1', #TPL_SACRED)), 1)
         gd.sacredGet = {}
         for i = 1, #TPL_SACRED do
             local v = vl[i]

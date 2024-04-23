@@ -88,9 +88,7 @@ process:onStart(function(this)
                             else
                                 local tpl = TPL_ABILITY_SOUL[index]
                                 if (isClass(tpl, AbilityTplClass)) then
-                                    if (tpl:condition()) then
-                                        Game():abilityPush(index, sIdx, true)
-                                    end
+                                    Game():abilityPush(index, sIdx, true)
                                 end
                             end
                         end
