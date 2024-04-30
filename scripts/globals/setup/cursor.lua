@@ -124,7 +124,7 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
             return false
         end
         if (ab:isProhibiting() == true) then
-            alerter.message(p, true, ab:banReason())
+            alerter.message(p, true, ab:prohibitReason())
             return false
         end
         if (selection:isInterrupt() or selection:isPause()) then
