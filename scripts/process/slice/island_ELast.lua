@@ -60,7 +60,7 @@ process:onStart(function(this)
                 e:speed(0)
             end
             e:onEvent(EVENT.Object.Destruct, function(destructData)
-                japi.EXSetEffectZ(destructData.triggerEffect:handle(), -9999)
+                japi.YD_SetEffectZ(destructData.triggerEffect:handle(), -9999)
             end)
         end)
     end

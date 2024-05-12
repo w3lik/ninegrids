@@ -100,13 +100,13 @@ function ninegridsCtl_frameItem(kit, stage)
                 end
                 local ob = storage[i]
                 local triggerFrame = evtData.triggerFrame
-                japi.FrameSetAlpha(triggerFrame:handle(), 0)
+                japi.DZ_FrameSetAlpha(triggerFrame:handle(), 0)
                 audio(Vcm("war3_MouseClick1"))
                 cursor.quote("follow", {
                     object = ob,
                     frame = triggerFrame,
                     over = function()
-                        japi.FrameSetAlpha(triggerFrame:handle(), triggerFrame:alpha())
+                        japi.DZ_FrameSetAlpha(triggerFrame:handle(), triggerFrame:alpha())
                     end,
                     ---@param evt evtOnMouseRightClickData
                     rightClick = function(evt)

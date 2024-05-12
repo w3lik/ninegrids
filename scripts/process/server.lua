@@ -3,7 +3,7 @@ process:onStart(function(this)
     local gd = Game():GD()
     local p = Player(1)
     local sev = Server(p)
-    if (japi.ServerAlready(p)) then
+    if (japi.DZ_IsServerAlready(p)) then
         local vl = string.explode("|", sev:load("GG", RACE_HUMAN_NAME .. "|0|0|1|5|000000000|1|0|0|0|0"))
         gd.skin = vl[1]
         p:skin(gd.skin)

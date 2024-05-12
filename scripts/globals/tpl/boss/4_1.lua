@@ -272,7 +272,7 @@ TPL_ABILITY_BOSS["剑泠(黑月)"] = {
                     return
                 end
                 z = z - 18
-                japi.EXSetEffectZ(e:handle(), z)
+                japi.YD_SetEffectZ(e:handle(), z)
                 if (ti % 6 == 0) then
                     effector("eff/DarkNova", x, y, nil, 0.5)
                     local g = Group():catch(UnitClass, {

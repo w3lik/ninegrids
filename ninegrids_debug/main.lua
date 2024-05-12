@@ -121,7 +121,7 @@ if (DEBUGGING) then
             avg = table.average(stage.costAvg)
             stage.costAvg = { avg }
         end
-        local fps = japi.GetFPS() / 100
+        local fps = japi.DZ_GetFPS() / 100
         if (fps < 50) then
             stage.low = stage.low + 1
         end

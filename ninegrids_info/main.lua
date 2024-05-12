@@ -351,7 +351,7 @@ function UI_NinegridsInfo:dead(dur)
     async.must()
     dur = dur or 5
     self:darkMarker(true)
-    PlayerLocal():mark(TEXTURE_MARK.dream, dur, 255, 0, 0)
+    --PlayerLocal():mark(TEXTURE_MARK.dream, dur, 255, 0, 0)
     local stage = self:stage()
     stage.dead:gradient({ duration = 0.5, alpha = 1 }, function(callFrame)
         callFrame:show(true)

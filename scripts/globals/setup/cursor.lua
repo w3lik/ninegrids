@@ -5,7 +5,7 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
     local sel = Image("ReplaceableTextures\\Selection\\SelectionCircleLarge.blp", 72, 72)
     sel:show(false)
     japi.AsyncRefresh("_selection", function()
-        if (false == japi.IsWindowActive()) then
+        if (false == japi.DZ_IsWindowActive()) then
             return
         end
         local p = PlayerLocal()
@@ -37,7 +37,7 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
     mouse.onMove("myTooltips", function(moveData)
         local p, rx, ry = moveData.triggerPlayer, moveData.rx, moveData.ry
         local drx = japi.FrameDisAdaptive(rx)
-        local under = h2u(japi.GetUnitUnderMouse())
+        local under = h2u(japi.DZ_GetUnitUnderMouse())
         local tx, ty = drx, ry + 0.024
         if (under ~= nil and under:owner() ~= p and false == under:isEnemy(p)) then
             local tips = {}
@@ -194,7 +194,7 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
             local isFleshing = false
             --
             ---@type Unit|Item
-            local under = h2u(japi.GetUnitUnderMouse())
+            local under = h2u(japi.DZ_GetUnitUnderMouse())
             if (inClass(under, UnitClass, ItemClass) and under:isAlive()) then
                 if (under:isEnemy(p)) then
                     texture = csTexture.pointer.enemy
@@ -298,7 +298,7 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
             local width = csTexture.aim.width
             local height = csTexture.aim.height
             ---@type Unit|Item
-            local under = h2u(japi.GetUnitUnderMouse())
+            local under = h2u(japi.DZ_GetUnitUnderMouse())
             ---@type Unit
             local isBan = bu:isInterrupt() or bu:isPause() or bu:isAbilityChantCasting() or bu:isAbilityKeepCasting()
             if (isBan) then
@@ -407,14 +407,14 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
                 return
             end
             local cond = {
-                x = japi.GetMouseTerrainX(),
-                y = japi.GetMouseTerrainY(),
+                x = japi.DZ_GetMouseTerrainX(),
+                y = japi.DZ_GetMouseTerrainY(),
             }
             if (ab:isBanCursor(cond)) then
                 alerter.message(evtData.triggerPlayer, true, "无效目标")
                 return
             end
-            sync.send("G_GAME_SYNC", { "ability_effective_xyz", ab:id(), cond.x, cond.y, japi.GetMouseTerrainZ() })
+            sync.send("G_GAME_SYNC", { "ability_effective_xyz", ab:id(), cond.x, cond.y, japi.DZ_GetMouseTerrainZ() })
             cursor.quoteOver()
         end,
     })
@@ -488,8 +488,8 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
                 curSize = math.max(castRadius, curSize - csSizeRate)
             end
             _int1 = curSize
-            local tx = japi.GetMouseTerrainX()
-            local ty = japi.GetMouseTerrainY()
+            local tx = japi.DZ_GetMouseTerrainX()
+            local ty = japi.DZ_GetMouseTerrainY()
             local prevUnit = _unit1
             local newUnits = Group():catch(UnitClass, {
                 limit = 30,
@@ -556,8 +556,8 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
                 return
             end
             local cond = {
-                x = japi.GetMouseTerrainX(),
-                y = japi.GetMouseTerrainY(),
+                x = japi.DZ_GetMouseTerrainX(),
+                y = japi.DZ_GetMouseTerrainY(),
                 radius = _int1 or ab:castRadius(),
                 units = _unit1,
             }
@@ -565,7 +565,7 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
                 alerter.message(evtData.triggerPlayer, true, "无效范围")
                 return
             end
-            sync.send("G_GAME_SYNC", { "ability_effective_xyz", ab:id(), cond.x, cond.y, japi.GetMouseTerrainZ() })
+            sync.send("G_GAME_SYNC", { "ability_effective_xyz", ab:id(), cond.x, cond.y, japi.DZ_GetMouseTerrainZ() })
             cursor.quoteOver()
         end,
     })
@@ -629,8 +629,8 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
                 curWidth = w_h * curHeight
             end
             _int1 = curHeight
-            local tx = japi.GetMouseTerrainX()
-            local ty = japi.GetMouseTerrainY()
+            local tx = japi.DZ_GetMouseTerrainX()
+            local ty = japi.DZ_GetMouseTerrainY()
             local prevUnit = _unit1
             local newUnits = Group():catch(UnitClass, {
                 limit = 30,
@@ -701,8 +701,8 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
                 return
             end
             local cond = {
-                x = japi.GetMouseTerrainX(),
-                y = japi.GetMouseTerrainY(),
+                x = japi.DZ_GetMouseTerrainX(),
+                y = japi.DZ_GetMouseTerrainY(),
                 units = _unit1,
             }
             local curSize = _int1
@@ -717,7 +717,7 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
                 alerter.message(evtData.triggerPlayer, true, "无效范围")
                 return
             end
-            sync.send("G_GAME_SYNC", { "ability_effective_xyz", ab:id(), cond.x, cond.y, japi.GetMouseTerrainZ() })
+            sync.send("G_GAME_SYNC", { "ability_effective_xyz", ab:id(), cond.x, cond.y, japi.DZ_GetMouseTerrainZ() })
             cursor.quoteOver()
         end,
     })
@@ -736,6 +736,7 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
             local frame = data.frame
             local a = frame:anchor()
             local rx, ry = japi.MouseRX(), japi.MouseRY()
+            csPointer:relation(FRAME_ALIGN_CENTER, FrameGameUI, FRAME_ALIGN_LEFT_BOTTOM, japi.FrameDisAdaptive(rx), ry)
             _float1 = rx - a[1]
             _float2 = ry - a[2]
         end,
@@ -762,8 +763,8 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
             y = math.max(y, a[4] / 2 + pb)
             y = math.min(y, 0.6 - a[4] / 2 - pt)
             local h = frame:handle()
-            japi.FrameClearAllPoints(h)
-            japi.FrameSetPoint(h, FRAME_ALIGN_CENTER, FrameGameUI:handle(), FRAME_ALIGN_LEFT_BOTTOM, x, y)
+            japi.DZ_FrameClearAllPoints(h)
+            japi.DZ_FrameSetPoint(h, FRAME_ALIGN_CENTER, FrameGameUI:handle(), FRAME_ALIGN_LEFT_BOTTOM, x, y)
             frame:releaseXY(x, y)
         end,
     })
@@ -798,7 +799,7 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
                 local selection = PlayerLocal():selection()
                 mouse.onLeftClick("followDrop", function(evtData)
                     if (mouse.isSafety(evtData.rx, evtData.ry)) then
-                        local tx, ty = japi.GetMouseTerrainX(), japi.GetMouseTerrainY()
+                        local tx, ty = japi.DZ_GetMouseTerrainX(), japi.DZ_GetMouseTerrainY()
                         local closest = Group():closest(UnitClass, {
                             limit = 5,
                             circle = {
