@@ -848,6 +848,7 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
                     ry = 0.6 - hh
                 end
             end
+            csPointer:relation(FRAME_ALIGN_LEFT_TOP, FrameGameUI, FRAME_ALIGN_LEFT_BOTTOM, japi.FrameDisAdaptive(rx), ry)
             csFollow:relation(FRAME_ALIGN_CENTER, FrameGameUI, FRAME_ALIGN_LEFT_BOTTOM, rx, ry)
         end,
         ---@param evtData evtOnMouseRightClickData
