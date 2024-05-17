@@ -771,7 +771,6 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
     
     cursor.setQuote("follow", {
         start = function()
-            csPointer:alpha(0)
             local data = cursor.currentData()
             ---@type Ability|Item
             local obj = data.object
