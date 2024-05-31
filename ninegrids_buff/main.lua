@@ -175,11 +175,11 @@ function UI_NinegridsBuff:updated(whichStage, whichUnit)
     end
     for bi = 1, whichStage.buff_max, 1 do
         if (whichStage.buff_tips[bi] ~= nil) then
-            whichStage.buff_buffSignal[bi]:texture(AUIKit(kit, tmpData.signalTexture[bi], "tga"))
+            whichStage.buff_buffSignal[bi]:texture(assets.uikit(kit, tmpData.signalTexture[bi], "tga"))
             whichStage.buff_buffs[bi]:texture(tmpData.buffTexture[bi])
             whichStage.buff_buffs[bi]:alpha(tmpData.buffAlpha[bi])
             whichStage.buff_buffs[bi]:text(tmpData.buffText[bi])
-            whichStage.buff_buffs[bi]:mask(AUIKit(kit, tmpData.maskTexture[bi], "tga"))
+            whichStage.buff_buffs[bi]:mask(assets.uikit(kit, tmpData.maskTexture[bi], "tga"))
             whichStage.buff_buffs[bi]:show(true)
         else
             whichStage.buff_buffs[bi]:show(false)

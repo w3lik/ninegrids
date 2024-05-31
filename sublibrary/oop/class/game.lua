@@ -118,7 +118,7 @@ function class:enemies(tpl, x, y, facing, hasErode)
         e:abilitySlot():tail(6)
         e:abilitySlot():insert(TPL_ABILITY_BOSS["界泠恶化"], 6)
     end
-    e:iconMap(AUIKit("ninegrids_minimap", "dot/monster", "tga"), 0.018, 0.018)
+    e:iconMap(assets.uikit("ninegrids_minimap", "dot/monster", "tga"), 0.018, 0.018)
     Pool("enemies"):insert(e)
     e:onEvent(EVENT.Unit.Dead, "enemies", function()
         local me = Game():GD().me
@@ -559,7 +559,7 @@ function class:openDoor(index)
             evtUnit:icon(icon)
             evtUnit:modelScale(size)
             local iSize = size * 0.022
-            evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/whirlpool", "tga"), iSize, iSize)
+            evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/whirlpool", "tga"), iSize, iSize)
             evtUnit:balloon({
                 z = 160,
                 interval = 0.01,
@@ -1746,7 +1746,7 @@ function class:bossBorn()
     boss:stature("*=2")
     boss:castChant("+=" .. (3 - diff * 0.3))
     boss:elite(true)
-    boss:iconMap(AUIKit("ninegrids_minimap", "dot/boss", "tga"), 0.04, 0.04)
+    boss:iconMap(assets.uikit("ninegrids_minimap", "dot/boss", "tga"), 0.04, 0.04)
     boss:alerter(true)
     local tp = boss:tpl()
     local ix = tp:prop("idx")
@@ -1862,7 +1862,7 @@ function class:bigBossBorn()
     boss:barStateMode(4)
     boss:castChant("+=" .. (3 - diff * 0.4))
     boss:elite(true)
-    boss:iconMap(AUIKit("ninegrids_minimap", "dot/boss", "tga"), 0.05, 0.05)
+    boss:iconMap(assets.uikit("ninegrids_minimap", "dot/boss", "tga"), 0.05, 0.05)
     boss:alerter(true)
     local lv = 5 + diff
     boss:abilitySlot():tail(6)

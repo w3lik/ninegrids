@@ -1009,7 +1009,7 @@ for i = 1, #TPL_SOUL, 1 do
     v:barStateAlways(true)
      :barStateMode(1)
      :barStateMarker(1000)
-     :iconMap(AUIKit("ninegrids_minimap", "dot/boss", "tga"), 0.04, 0.04)
+     :iconMap(assets.uikit("ninegrids_minimap", "dot/boss", "tga"), 0.04, 0.04)
     if (i > 8) then
         v:condition(function() return Game():soul(i) == true end)
          :conditionTips("打败：" .. TPL_SOUL[i]:name())

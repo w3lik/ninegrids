@@ -8,7 +8,7 @@ process:onStart(function(this)
         evtUnit:modelAlias("hero/UjimasaHojoV1.07")
         evtUnit:modelScale(1.3)
         evtUnit:scale(1.35)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 270,
             interval = 0.01,
@@ -27,7 +27,7 @@ process:onStart(function(this)
     Game():npc("VillagerMan1", TPL_UNIT.NPC_Token, -5004, 3459, 100, function(evtUnit)
         evtUnit:name("流浪的村民")
         evtUnit:modelAlias("VillagerMan1")
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:modelScale(1)
         evtUnit:scale(1)
         evtUnit:balloon({

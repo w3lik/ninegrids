@@ -4,7 +4,7 @@ process:onStart(function(this)
     local gd = Game():GD()
     Game():npc("NagaRoyalGuard", TPL_UNIT.SeaRoyalGuard, 5887, -200, 180, function(evtUnit)
         evtUnit:name("海族皇家卫兵")
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/what", "tga"), 0.024, 0.024)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/what", "tga"), 0.024, 0.024)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -29,7 +29,7 @@ process:onStart(function(this)
     end)
     Game():npc("Murloc1", TPL_UNIT.MurlocYellow, 4465, 346, 180, function(evtUnit)
         evtUnit:name("巡逻的小鱼人")
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         AI("loiter"):link(evtUnit)
         evtUnit:balloon({
             z = 250,
@@ -46,7 +46,7 @@ process:onStart(function(this)
     end)
     Game():npc("Murloc2", TPL_UNIT.MurlocOrange, 4638, -1086, 90, function(evtUnit)
         evtUnit:name("巡逻的小鱼人")
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         AI("loiter"):link(evtUnit)
         evtUnit:balloon({
             z = 250,
@@ -63,7 +63,7 @@ process:onStart(function(this)
     end)
     Game():npc("Murloc3", TPL_UNIT.MurlocCyan, 3620, 1414, 180, function(evtUnit)
         evtUnit:name("巡逻的小鱼人")
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         AI("loiter"):link(evtUnit)
         evtUnit:balloon({
             z = 250,
@@ -80,7 +80,7 @@ process:onStart(function(this)
     end)
     Game():npc("Murloc4", TPL_UNIT.MurlocGreen, 5591, -596, 160, function(evtUnit)
         evtUnit:name("坚守的小鱼人")
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,

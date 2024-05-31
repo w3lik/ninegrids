@@ -14,7 +14,7 @@ process:onStart(function(this)
     Game():npc("VillagerMan1", TPL_UNIT.NPC_Token, -3610, 389, 190, function(evtUnit)
         evtUnit:name("张望的男村民")
         evtUnit:modelAlias("VillagerMan2")
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:modelScale(1)
         evtUnit:scale(1)
         evtUnit:balloon({

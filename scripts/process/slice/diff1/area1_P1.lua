@@ -9,7 +9,7 @@ process:onStart(function(this)
         evtUnit:icon("unit/Acolyte")
         evtUnit:modelScale(1)
         evtUnit:scale(1.0)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/what", "tga"), 0.024, 0.024)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/what", "tga"), 0.024, 0.024)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,

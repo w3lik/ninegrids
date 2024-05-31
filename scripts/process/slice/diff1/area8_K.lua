@@ -7,7 +7,7 @@ process:onStart(function(this)
         evtUnit:modelAlias("HeroBladeMaster")
         evtUnit:modelScale(1.3)
         evtUnit:scale(1.3)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 280,
             interval = 0.01,
@@ -27,7 +27,7 @@ process:onStart(function(this)
         evtUnit:modelAlias("HumanMage")
         evtUnit:modelScale(1)
         evtUnit:scale(1.1)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -57,7 +57,7 @@ process:onStart(function(this)
         evtUnit:modelAlias("hero/TheBansheeQueen")
         evtUnit:modelScale(1)
         evtUnit:scale(1)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -75,7 +75,7 @@ process:onStart(function(this)
         evtUnit:modelAlias("Kobold")
         evtUnit:modelScale(1)
         evtUnit:scale(1)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,

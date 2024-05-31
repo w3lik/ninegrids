@@ -102,7 +102,7 @@ UI_NinegridsInfo:onSetup(function(this)
         "ability/InscriptionVantusRuneNightmare",
         "ability/InscriptionVantusRuneOdyn",
     }
-    stage.avatar:texture(AIcon(aic[Game():GD().diff]))
+    stage.avatar:texture(assets.icon(aic[Game():GD().diff]))
     stage.avatarBorder = FrameBackdrop(kit .. '->avatarBorder', stage.avatar)
         :relation(FRAME_ALIGN_CENTER, stage.avatar, FRAME_ALIGN_CENTER, 0, 0)
         :size(0.055, 0.055)
@@ -260,7 +260,7 @@ function UI_NinegridsInfo:updated()
             end)
          :show(true)
     end
-    stage.avatarBtnB1:prop("texture", AIcon("other/PlusYellow"))
+    stage.avatarBtnB1:prop("texture", assets.icon("other/PlusYellow"))
          :onEvent(EVENT.Frame.LeftClick, function() UI_NinegridsUpgrade:upgrade() end)
          :onEvent(EVENT.Frame.Leave, function() FrameTooltips():show(false) end)
          :onEvent(EVENT.Frame.Enter,

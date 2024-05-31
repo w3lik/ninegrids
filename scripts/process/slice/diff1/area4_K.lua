@@ -7,7 +7,7 @@ process:onStart(function(this)
         evtUnit:modelAlias("HumanMage")
         evtUnit:modelScale(1)
         evtUnit:scale(1.1)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -36,7 +36,7 @@ process:onStart(function(this)
         evtUnit:modelAlias("Nerubian")
         evtUnit:modelScale(1)
         evtUnit:scale(1.3)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/what", "tga"), 0.024, 0.024)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/what", "tga"), 0.024, 0.024)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -112,7 +112,7 @@ process:onStart(function(this)
     Game():npc("FirePitPig", TPL_UNIT.NPC_Token, -4535, -664, 270, function(evtUnit)
         evtUnit:name("香喷喷的烤猪")
         evtUnit:modelAlias("Doodads\\Northrend\\Props\\FirePitPig\\FirePitPig.mdl")
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:modelScale(1)
         evtUnit:scale(1.2)
         evtUnit:balloon({
@@ -124,7 +124,7 @@ process:onStart(function(this)
     Game():npc("Dryad", TPL_UNIT.NPC_Token, -4050, -1381, 300, function(evtUnit)
         evtUnit:name("逃过一劫的树妖")
         evtUnit:modelAlias("Dryad")
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:modelScale(1)
         evtUnit:scale(1.2)
         evtUnit:balloon({

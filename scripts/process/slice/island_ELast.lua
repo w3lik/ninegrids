@@ -70,7 +70,7 @@ process:onStart(function(this)
     Game():npc("NPC_LastDoor", TPL_UNIT.NPC_Token, 0, 0, 270, function(evtUnit)
         evtUnit:modelAlias(".mdl")
         evtUnit:superposition("locust", "+=1")
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/whirlpool", "tga"), 0.025, 0.025)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/whirlpool", "tga"), 0.025, 0.025)
         evtUnit:balloon({
             z = 200,
             interval = 0.01,

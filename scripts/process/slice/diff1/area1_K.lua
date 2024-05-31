@@ -8,7 +8,7 @@ process:onStart(function(this)
         evtUnit:icon("unit/Acolyte")
         evtUnit:modelScale(1)
         evtUnit:scale(1.0)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/what", "tga"), 0.024, 0.024)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/what", "tga"), 0.024, 0.024)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -50,7 +50,7 @@ process:onStart(function(this)
         evtUnit:icon("unit/TheCaptain")
         evtUnit:modelScale(1)
         evtUnit:scale(1.3)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -89,7 +89,7 @@ process:onStart(function(this)
         evtUnit:modelAlias("HumanMage")
         evtUnit:modelScale(1)
         evtUnit:scale(1.1)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -115,7 +115,7 @@ process:onStart(function(this)
         evtUnit:modelAlias("HumanMage")
         evtUnit:modelScale(1)
         evtUnit:scale(1.1)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -134,7 +134,7 @@ process:onStart(function(this)
         evtUnit:modelAlias("HumanMage")
         evtUnit:modelScale(1)
         evtUnit:scale(1.1)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -154,7 +154,7 @@ process:onStart(function(this)
         evtUnit:modelAlias("HumanMage")
         evtUnit:modelScale(1)
         evtUnit:scale(1.1)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,

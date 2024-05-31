@@ -8,7 +8,7 @@ process:onStart(function(this)
         evtUnit:modelAlias("PandarenBrewmaster")
         evtUnit:modelScale(1.4)
         evtUnit:scale(1.8)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/what", "tga"), 0.024, 0.024)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/what", "tga"), 0.024, 0.024)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -30,7 +30,7 @@ process:onStart(function(this)
         })
     end)
     Game():npc("PandaEarth", TPL_UNIT.ABILITY_SOUL_PandaEarth, -490, -4611, 135, function(evtUnit)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -45,7 +45,7 @@ process:onStart(function(this)
         })
     end)
     Game():npc("PandaStorm", TPL_UNIT.ABILITY_SOUL_PandaStorm, -1151, -2654, 300, function(evtUnit)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -60,7 +60,7 @@ process:onStart(function(this)
         })
     end)
     Game():npc("PandaFire", TPL_UNIT.ABILITY_SOUL_PandaFire, 386, -3127, 300, function(evtUnit)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -75,7 +75,7 @@ process:onStart(function(this)
         })
     end)
     Game():npc("PandaArcher", TPL_UNIT.ABILITY_SOUL_PandaArcher, -670, -3783, 300, function(evtUnit)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -91,7 +91,7 @@ process:onStart(function(this)
         })
     end)
     Game():npc("PandaHarvester", TPL_UNIT.ABILITY_SOUL_PandaHarvester, -1455, -5637, 260, function(evtUnit)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -105,7 +105,7 @@ process:onStart(function(this)
         })
     end)
     Game():npc("PandaHonorguard", TPL_UNIT.ABILITY_SOUL_PandaHonorguard, 1538, -5403, 260, function(evtUnit)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -127,7 +127,7 @@ process:onStart(function(this)
         })
     end)
     Game():npc("PandaSage", TPL_UNIT.ABILITY_SOUL_PandaSage, -596, -5319, 130, function(evtUnit)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -150,7 +150,7 @@ process:onStart(function(this)
         })
     end)
     Game():npc("PandaVulture", TPL_UNIT.ABILITY_SOUL_PandaVulture, -321, -5216, 210, function(evtUnit)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,

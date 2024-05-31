@@ -7,7 +7,7 @@ process:onStart(function(this)
         evtUnit:modelAlias("hero/BladeMasterJungleTrollV1.01")
         evtUnit:modelScale(1.3)
         evtUnit:scale(1.35)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 280,
             interval = 0.01,
@@ -24,7 +24,7 @@ process:onStart(function(this)
     end)
     Game():npc("Murloc4", TPL_UNIT.MurlocGreen, 3234, 1709, -45, function(evtUnit)
         evtUnit:name("逃难的小鱼人")
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,

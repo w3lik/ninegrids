@@ -543,7 +543,7 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
                 newUnits = nil
             end
             csArea:rgba(255, 255, 255, circleParams.alpha)
-            csArea:texture(AUIKit(nil, texture))
+            csArea:texture(assets.uikit(nil, texture))
             csArea:size(curSize * 2, curSize * 2)
             csArea:position(tx, ty)
             csArea:show(true)
@@ -688,7 +688,7 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
                 newUnits = nil
             end
             csArea:rgba(255, 255, 255, csTexture.square.alpha)
-            csArea:texture(AUIKit(nil, texture))
+            csArea:texture(assets.uikit(nil, texture))
             csArea:size(curWidth, curHeight)
             csArea:position(tx, ty)
             csArea:show(true)

@@ -34,7 +34,7 @@ process:onStart(function(this)
             evtUnit:superposition("pause", "+=1")
             evtUnit:animateScale(0)
         end)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/what", "tga"), 0.027, 0.027)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/what", "tga"), 0.027, 0.027)
         local lv = 5 + diff
         evtUnit:abilitySlot():tail(6)
         if (diff <= 4) then

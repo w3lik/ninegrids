@@ -8,7 +8,7 @@ process:onStart(function(this)
         evtUnit:modelAlias("hero/TheBansheeQueen")
         evtUnit:modelScale(1.3)
         evtUnit:scale(1.4)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 260,
             interval = 0.01,

@@ -4,7 +4,7 @@ process:onStart(function(this)
     local gd = Game():GD()
     Game():npc("SeaRoyalGuard", TPL_UNIT.SeaRoyalGuard, 5386, -1058, 110, function(evtUnit)
         evtUnit:name("不屈的皇海战士")
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
@@ -20,7 +20,7 @@ process:onStart(function(this)
     end)
     Game():npc("SeaMyrmidon1", TPL_UNIT.SeaMyrmidon, 4257, 1802, 270, function(evtUnit)
         evtUnit:name("逃走的巨海战士")
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,

@@ -5,7 +5,7 @@ process:onStart(function(this)
     Game():npc("Zombie", TPL_UNIT.NPC_Token, 4323, 2760, 120, function(evtUnit)
         evtUnit:name("不动的僵尸")
         evtUnit:modelAlias("Zombie")
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:modelScale(1)
         evtUnit:scale(1)
         evtUnit:balloon({
@@ -17,7 +17,7 @@ process:onStart(function(this)
     Game():npc("Zombie", TPL_UNIT.NPC_Token, 3724, 5026, -45, function(evtUnit)
         evtUnit:name("不动的僵尸")
         evtUnit:modelAlias("Zombie")
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:modelScale(1)
         evtUnit:scale(1)
         evtUnit:balloon({
@@ -31,7 +31,7 @@ process:onStart(function(this)
         evtUnit:modelAlias("HumanMage")
         evtUnit:modelScale(1)
         evtUnit:scale(1.1)
-        evtUnit:iconMap(AUIKit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
+        evtUnit:iconMap(assets.uikit("ninegrids_minimap", "dot/exclamation", "tga"), 0.01, 0.01)
         evtUnit:balloon({
             z = 250,
             interval = 0.01,
