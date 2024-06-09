@@ -736,7 +736,6 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
             local frame = data.frame
             local a = frame:anchor()
             local rx, ry = japi.MouseRX(), japi.MouseRY()
-            csPointer:relation(FRAME_ALIGN_CENTER, FrameGameUI, FRAME_ALIGN_LEFT_BOTTOM, japi.FrameDisAdaptive(rx), ry)
             _float1 = rx - a[1]
             _float2 = ry - a[2]
         end,
