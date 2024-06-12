@@ -794,31 +794,34 @@ Game():onEvent(EVENT.Game.Start, "myCursor", function()
                     :show(true)
             
             if (isClass(obj, ItemClass) and obj:dropable()) then
-                local selection = PlayerLocal():selection()
-                mouse.onLeftClick("followDrop", function(evtData)
-                    if (mouse.isSafety(evtData.rx, evtData.ry)) then
-                        local tx, ty = japi.DZ_GetMouseTerrainX(), japi.DZ_GetMouseTerrainY()
-                        local closest = Group():closest(UnitClass, {
-                            limit = 5,
-                            circle = {
-                                x = tx,
-                                y = ty,
-                                radius = 150,
-                            },
-                            ---@param enumUnit Unit
-                            filter = function(enumUnit)
-                                return enumUnit ~= selection and enumUnit:isAlive() and enumUnit:owner() == selection:owner()
+                local p = PlayerLocal()
+                local selection = p:selection()
+                if (p == selection:owner()) then
+                    mouse.onLeftClick("followDrop", function(evtData)
+                        if (mouse.isSafety(evtData.rx, evtData.ry)) then
+                            local tx, ty = japi.DZ_GetMouseTerrainX(), japi.DZ_GetMouseTerrainY()
+                            local closest = Group():closest(UnitClass, {
+                                limit = 5,
+                                circle = {
+                                    x = tx,
+                                    y = ty,
+                                    radius = 150,
+                                },
+                                ---@param enumUnit Unit
+                                filter = function(enumUnit)
+                                    return enumUnit ~= selection and enumUnit:isAlive()
+                                end
+                            })
+                            if (isClass(closest, UnitClass)) then
+                                sync.send("G_GAME_SYNC", { "item_deliver_cursor", obj:id(), closest:id() })
+                            else
+                                sync.send("G_GAME_SYNC", { "item_drop_cursor", obj:id(), tx, ty })
                             end
-                        })
-                        if (isClass(closest, UnitClass)) then
-                            sync.send("G_GAME_SYNC", { "item_deliver_cursor", obj:id(), closest:id() })
-                        else
-                            sync.send("G_GAME_SYNC", { "item_drop_cursor", obj:id(), tx, ty })
+                            cursor.quoteOver()
                         end
-                        cursor.quoteOver()
-                    end
-                    return false
-                end)
+                        return false
+                    end)
+                end
             end
         end,
         over = function()

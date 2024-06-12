@@ -92,6 +92,9 @@ function ninegridsCtl_frameAbility(kit, stage)
                 if (false == isClass(selection, UnitClass)) then
                     return
                 end
+                if (evtData.triggerPlayer ~= selection:owner()) then
+                    return
+                end
                 local slot = selection:abilitySlot()
                 if (nil == slot) then
                     return
@@ -132,6 +135,8 @@ function ninegridsCtl_frameAbility(kit, stage)
                             else
                                 cursor.quoteOver()
                             end
+                        else
+                            cursor.quoteOver()
                         end
                     end,
                 })
