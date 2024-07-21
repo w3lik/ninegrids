@@ -88,8 +88,9 @@ function ninegridsCtl_frameWarehouse(kit, stage)
                         :onEvent(EVENT.Frame.LeftClick,
                         function(ed)
                             FrameTooltips():show(false)
+                            ---@type Item
                             local it = ed.triggerPlayer:warehouseSlot():storage()[i]
-                            if (isClass(it, ItemClass)) then
+                            if (isClass(it, ItemClass) and it:dropable()) then
                                 if (ed.key == "drop") then
                                     local selection = ed.triggerPlayer:selection()
                                     if (isClass(selection, UnitClass)) then
